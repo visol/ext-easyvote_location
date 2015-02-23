@@ -1,0 +1,15 @@
+
+plugin.tx_easyvotelocation {
+	view {
+		# cat=plugin.tx_easyvotelocation/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:easyvote_location/Resources/Private/Templates/
+		# cat=plugin.tx_easyvotelocation/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:easyvote_location/Resources/Private/Partials/
+		# cat=plugin.tx_easyvotelocation/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:easyvote_location/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_easyvotelocation//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

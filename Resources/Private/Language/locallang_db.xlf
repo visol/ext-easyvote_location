@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-02-23T14:33:51Z" product-name="easyvote_location">
+		<header/>
+		<body>
+			<trans-unit id="tx_easyvotelocation_domain_model_location">
+				<source>Location</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.address">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.longitude">
+				<source>Longitude</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.latitude">
+				<source>Latitude</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.city">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.creator">
+				<source>Creator</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.last_updater">
+				<source>Last Updater</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.is_available_for_current_voting_day">
+				<source>Is Available For Current Voting Day</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.photo">
+				<source>Photo</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.location_type">
+				<source>Location Type</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_locationtype">
+				<source>Location Type</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_locationtype.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_locationtype.icon">
+				<source>Icon</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_locationtype.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_locationtype.is_content_editable">
+				<source>Is Editable</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_locationtype.locations">
+				<source>Locations</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

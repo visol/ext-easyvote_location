@@ -1,0 +1,45 @@
+<html xmlns:f="http://typo3.org/ns/fluid/ViewHelpers"
+      xmlns:location="http://typo3.org/ns/Visol/EasyvoteLocation/ViewHelpers">
+
+<f:layout name="Default"/>
+
+<f:section name="main">
+
+	<style>
+		#map-canvas {
+			width: 100%;
+			height: 400px;
+		}
+
+		#legend {
+			background: white;
+			padding: 10px;
+		}
+
+	</style>
+
+
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+
+	<location:script file="{f:uri.resource(path:'JavaScript/Maps.js')}"/>
+	<location:resultSet.toJson objects="{locationTypes}" type="locationType"/>
+
+	<script>
+
+		//		EV.locationTypes = ;
+		//		<f:for each=""
+
+	</script>
+
+
+	<div id="legend">
+
+	</div>
+
+
+	<div id="map-canvas"></div>
+
+
+</f:section>
+
+</html>
