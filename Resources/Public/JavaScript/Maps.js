@@ -1,12 +1,12 @@
 var map;
 function initialize() {
 	map = new google.maps.Map(document.getElementById('map-canvas'), {
-		zoom: 8,
-		center: new google.maps.LatLng(46.8131873, 8.2242101),
+		zoom: EasyVote.Zoom,
+		center: new google.maps.LatLng(EasyVote.Latitude, EasyVote.Longitude),
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
-	icons = EV.LocationTypes;
+	icons = EasyVote.LocationTypes;
 
 	function addMarker(feature) {
 		var marker = new google.maps.Marker({

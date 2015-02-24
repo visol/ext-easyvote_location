@@ -1,5 +1,5 @@
 <?php
-namespace Visol\EasyvoteLocation\ViewHelpers\ResultSet;
+namespace Visol\EasyvoteLocation\ViewHelpers\Maps;
 
 /**
  * This file is part of the TYPO3 CMS project.
@@ -14,11 +14,9 @@ namespace Visol\EasyvoteLocation\ViewHelpers\ResultSet;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-use Visol\EasyvoteLocation\Domain\Model\LocationType;
 use Visol\EasyvoteLocation\JsonEncoder\JsonEncoderInterface;
 
 /**
@@ -38,20 +36,18 @@ class ToJsonViewHelper extends AbstractViewHelper {
 		$dataEncoder = $this->getAppropriateJsonEncoder($type);
 		$encodedObjects = $dataEncoder->encode($objects);
 
-		$output = sprintf(
-			$this->getTemplate(),
-			$this->getJavaScriptNamespace($type),
+		return sprintf(
+			'EasyVote.%s = %s;',
+			ucfirst($type). 's', // Add ending "s" for the plural. Works so far...
 			$encodedObjects
 		);
-
-		return $output;
 	}
 
 	/**
 	 * @param string $type
 	 * @return JsonEncoderInterface
 	 */
-	public function getAppropriateJsonEncoder($type){
+	protected function getAppropriateJsonEncoder($type){
 		$className = sprintf(
 			'Visol\EasyvoteLocation\JsonEncoder\%sEncoder',
 			ucfirst($type)
@@ -61,26 +57,6 @@ class ToJsonViewHelper extends AbstractViewHelper {
 			throw new \RuntimeException('I could not find class ' . $className, 1424774501);
 		}
 		return GeneralUtility::makeInstance($className);
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getTemplate() {
-		return "
-<script>
-EV.%s = %s;
-</script>
-		";
-	}
-
-	/**
-	 * @param string $type
-	 * @return string
-	 */
-	protected function getJavaScriptNamespace($type) {
-		// Add ending "s" for the plural. Works so far.
-		return ucfirst($type) . 's';
 	}
 
 }

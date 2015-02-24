@@ -21,19 +21,14 @@
 
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
 
-	<script>
-		window.EV = {};
-	</script>
+
 	<location:script file="{f:uri.resource(path:'JavaScript/Maps.js')}"/>
-	<location:resultSet.toJson objects="{locationTypes}" type="locationType"/>
-
-	<script>
-
-		//		EV.locationTypes = ;
-		//		<f:for each=""
-
-	</script>
-
+	<location:maps>
+		<location:maps.coordinate type="longitude"/>
+		<location:maps.coordinate type="latitude"/>
+		<location:maps.zoom />
+		<location:maps.toJson objects="{locationTypes}" type="locationType"/>
+	</location:maps>
 
 	<div id="legend">
 
