@@ -1,8 +1,8 @@
 var map;
 function initialize() {
 	map = new google.maps.Map(document.getElementById('map-canvas'), {
-		zoom: 16,
-		center: new google.maps.LatLng(-33.91722, 151.23064),
+		zoom: 8,
+		center: new google.maps.LatLng(46.8131873, 8.2242101),
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
@@ -18,46 +18,46 @@ function initialize() {
 
 	var features = [
 		{
-			position: new google.maps.LatLng(-33.91721, 151.22630),
+			position: new google.maps.LatLng(46.8131873, 8.2242101),
 			type: '3'
 		}, {
-			position: new google.maps.LatLng(-33.91539, 151.22820),
+			position: new google.maps.LatLng(46.8131372, 8.22742202),
 			type: '3'
 		}, {
-			position: new google.maps.LatLng(-33.91747, 151.22912),
+			position: new google.maps.LatLng(46.8131873, 8.2542101),
 			type: '3'
 		}, {
-			position: new google.maps.LatLng(-33.91910, 151.22907),
+			position: new google.maps.LatLng(46.8431873, 8.22142101),
 			type: '3'
 		}, {
-			position: new google.maps.LatLng(-33.91725, 151.23011),
+			position: new google.maps.LatLng(46.8151873, 8.22424101),
 			type: '3'
 		}, {
-			position: new google.maps.LatLng(-33.91872, 151.23089),
+			position: new google.maps.LatLng(46.8131673, 8.22412101),
 			type: '3'
 		}, {
-			position: new google.maps.LatLng(-33.91784, 151.23094),
+			position: new google.maps.LatLng(46.8181873, 8.22342101),
 			type: '3'
 		}, {
-			position: new google.maps.LatLng(-33.91682, 151.23149),
+			position: new google.maps.LatLng(46.9131873, 8.2292101),
 			type: '3'
 		}, {
-			position: new google.maps.LatLng(-33.91790, 151.23463),
+			position: new google.maps.LatLng(46.8131833, 8.2212101),
 			type: '3'
 		}, {
-			position: new google.maps.LatLng(-33.91666, 151.23468),
+			position: new google.maps.LatLng(46.8131673, 8.2222101),
 			type: '3'
 		}, {
-			position: new google.maps.LatLng(-33.916988, 151.233640),
+			position: new google.maps.LatLng(46.8132873, 8.2272101),
 			type: '3'
 		}, {
-			position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
+			position: new google.maps.LatLng(46.8171873, 8.2222101),
 			type: '1'
 		}, {
-			position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
+			position: new google.maps.LatLng(46.8191873, 8.2282101),
 			type: '1'
 		}, {
-			position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
+			position: new google.maps.LatLng(46.8132873, 8.2272101),
 			type: '1'
 		}, {
 			position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),

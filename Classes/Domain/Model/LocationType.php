@@ -21,6 +21,10 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
  */
 class LocationType extends AbstractValueObject {
 
+	const TYPE_POST_BOX = 1;
+	const TYPE_MUNICIPAL_ADMINISTRATION = 2;
+	const TYPE_POLLING_STATION = 3;
+
 	/**
 	 * name
 	 *
