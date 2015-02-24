@@ -11,7 +11,7 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'Display possible voting locations on a map',
+	'title' => 'Display voting locations on a map',
 	'description' => '',
 	'category' => 'plugin',
 	'author' => 'Fabien Udriot',
@@ -24,7 +24,8 @@ $EM_CONF[$_EXTKEY] = array(
 	'version' => '1.0.0-dev',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '6.2',
+			'typo3' => '6.2.0-6.2.99',
+			'easyvote' => '',
 		),
 		'conflicts' => array(
 		),

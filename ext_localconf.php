@@ -8,11 +8,14 @@ if (!defined('TYPO3_MODE')) {
 	'Pi1',
 	array(
 		'Location' => 'list',
-		
+
 	),
 	// non-cacheable actions
 	array(
 		'Location' => '',
-		
+
 	)
 );
+
+// Configure commands that can be run from the cli_dispatch.phpsh script.
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Visol\EasyvoteLocation\Command\PostBoxCommandController';

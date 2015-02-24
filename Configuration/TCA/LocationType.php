@@ -5,11 +5,8 @@ if (!defined ('TYPO3_MODE')) {
 
 $GLOBALS['TCA']['tx_easyvotelocation_domain_model_locationtype'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_easyvotelocation_domain_model_locationtype']['ctrl'],
-	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, icon, description, is_content_editable, locations',
-	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, icon, description, is_content_editable, locations, '),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, icon, description, is_content_editable,'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -91,24 +88,5 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_locationtype'] = array(
 				'default' => 0
 			)
 		),
-		'locations' => array(
-			'exclude' => 1,
-			'label' => 'LLL:EXT:easyvote_location/Resources/Private/Language/locallang_db.xlf:tx_easyvotelocation_domain_model_locationtype.locations',
-			'config' => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_easyvotelocation_domain_model_location',
-				'foreign_field' => 'locationtype',
-				'maxitems'      => 9999,
-				'appearance' => array(
-					'collapseAll' => 0,
-					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
-				),
-			),
-
-		),
-
 	),
 );
