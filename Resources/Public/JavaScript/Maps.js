@@ -1,85 +1,108 @@
 var map;
+var markers = [];
 function initialize() {
+
 	map = new google.maps.Map(document.getElementById('map-canvas'), {
-		zoom: EasyVote.Zoom,
+		//zoom: EasyVote.Zoom,
+		zoom: 12,
 		center: new google.maps.LatLng(EasyVote.Latitude, EasyVote.Longitude),
+		//center: new google.maps.LatLng(37.4419, -122.1419),
 		mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+
+	$.ajax({
+		//url: "/data.json",
+		url: EasyVote.Location,
+		//type: "POST",
+		//data: "{'id': '" + propertyid + "'}",
+		async: true,
+		cache: true,
+		//contentType: "application/json;",
+		//dataType: "json",
+		success: function (data, textStatus, jqXHR) { //
+			data = JSON && JSON.parse(data) || $.parseJSON(data);
+			//mydata = data;
+			//createPropertyMarkers();
+
+
+			for (var i = 0; i < data.length; i++) {
+				var location = data[i];
+
+
+				var sizeX = 16;
+				var sizeY = 16;
+				var icon = {
+					url: 'typo3conf/ext/easyvote_location/Resources/Public/Icons/PostBox.png',
+					size: new google.maps.Size(sizeX, sizeY),
+					origin: new google.maps.Point(0, 0),
+					anchor: new google.maps.Point(sizeX/2, sizeY/2)
+				};
+
+
+				var marker = new google.maps.Marker({
+					position: new google.maps.LatLng(location.latitude,  location.longitude),
+					map: map,
+					draggable: false,
+					icon: icon
+				});
+
+				//var marker = new google.maps.Marker({
+				//	position: new google.maps.LatLng(location.latitude,  location.longitude),
+				//	icon: icon
+				//});
+				//markers.push(marker);
+			}
+
+			//var markerCluster = new MarkerClusterer(map, markers);
+		},
+		error: function (xmlHttpRequest, textStatus, errorThrown) {
+			console.log(xmlHttpRequest.responseText);
+			console.log(textStatus);
+			console.log(errorThrown);
+			alert("Screen shot this error: " + xmlHttpRequest.toString() + " " + textStatus.toString() + " " + errorThrown.toString());
+		}
 	});
 
 	icons = EasyVote.LocationTypes;
 
-	function addMarker(feature) {
+	function addMarker(location) {
 		var marker = new google.maps.Marker({
-			position: feature.position,
-			icon: icons[feature.type].icon,
+			position: location.position,
+			icon: icons[location.type].icon,
 			map: map
+		});
+
+		var infowindow = new google.maps.InfoWindow({
+			content: location.text
+		});
+
+		google.maps.event.addListener(marker, 'click', function() {
+			infowindow.open(map,marker);
 		});
 	}
 
-	var features = [
-		{
-			position: new google.maps.LatLng(46.8131873, 8.2242101),
-			type: '3'
-		}, {
-			position: new google.maps.LatLng(46.8131372, 8.22742202),
-			type: '3'
-		}, {
-			position: new google.maps.LatLng(46.8131873, 8.2542101),
-			type: '3'
-		}, {
-			position: new google.maps.LatLng(46.8431873, 8.22142101),
-			type: '3'
-		}, {
-			position: new google.maps.LatLng(46.8151873, 8.22424101),
-			type: '3'
-		}, {
-			position: new google.maps.LatLng(46.8131673, 8.22412101),
-			type: '3'
-		}, {
-			position: new google.maps.LatLng(46.8181873, 8.22342101),
-			type: '3'
-		}, {
-			position: new google.maps.LatLng(46.9131873, 8.2292101),
-			type: '3'
-		}, {
-			position: new google.maps.LatLng(46.8131833, 8.2212101),
-			type: '3'
-		}, {
-			position: new google.maps.LatLng(46.8131673, 8.2222101),
-			type: '3'
-		}, {
-			position: new google.maps.LatLng(46.8132873, 8.2272101),
-			type: '3'
-		}, {
-			position: new google.maps.LatLng(46.8171873, 8.2222101),
-			type: '1'
-		}, {
-			position: new google.maps.LatLng(46.8191873, 8.2282101),
-			type: '1'
-		}, {
-			position: new google.maps.LatLng(46.8132873, 8.2272101),
-			type: '1'
-		}, {
-			position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
-			type: '1'
-		}, {
-			position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
-			type: '1'
-		}, {
-			position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
-			type: '1'
-		}, {
-			position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
-			type: '1'
-		}, {
-			position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
-			type: '2'
-		}
-	];
+	//var markers = [
+	//	{
+	//		position: new google.maps.LatLng(46.8131873, 8.2242101),
+	//		type: '3',
+	//		text: 'Uluru (Ayers Rock)'
+	//	}
+	//];
 
-	for (var i = 0, feature; feature = features[i]; i++) {
-		addMarker(feature);
-	}
+	//var markers = [];
+	//for (var i = 0; i < 100; i++) {
+	//	var dataPhoto = data.photos[i];
+	//	var latLng = new google.maps.LatLng(dataPhoto.latitude,
+	//		dataPhoto.longitude);
+	//	var marker = new google.maps.Marker({
+	//		position: latLng
+	//	});
+	//	markers.push(marker);
+	//}
+	//var markerCluster = new MarkerClusterer(map, markers);
+	//for (var i = 0, marker; marker = markers[i]; i++) {
+	//	addMarker(marker);
+	//}
 
 	var legend = document.getElementById('legend');
 	for (var key in icons) {
@@ -87,7 +110,7 @@ function initialize() {
 		var name = type.name;
 		var icon = type.icon;
 		var div = document.createElement('div');
-		div.innerHTML = '<img src="' + icon + '"> ' + name;
+		//div.innerHTML = '<img src="' + icon + '"> ' + name;
 		legend.appendChild(div);
 	}
 
@@ -95,3 +118,4 @@ function initialize() {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+

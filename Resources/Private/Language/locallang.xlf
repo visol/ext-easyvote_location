@@ -45,9 +45,6 @@
 			<trans-unit id="tx_easyvotelocation_domain_model_locationtype.name">
 				<source>Name</source>
 			</trans-unit>
-			<trans-unit id="tx_easyvotelocation_domain_model_locationtype.icon">
-				<source>Icon</source>
-			</trans-unit>
 			<trans-unit id="tx_easyvotelocation_domain_model_locationtype.description">
 				<source>Description</source>
 			</trans-unit>

@@ -30,4 +30,38 @@ class LocationRepository extends Repository {
 		$this->setDefaultQuerySettings($querySettings);
 	}
 
+	/**
+	 * A more performing query than the $query
+	 *
+	 * @return array
+	 */
+	public function findAllForMaps() {
+
+		$tableName = 'tx_easyvotelocation_domain_model_location';
+		$clause = '1=1';
+		$clause .= $this->getPageRepository()->enableFields($tableName);
+		$clause .= $this->getPageRepository()->deleteClause($tableName);
+		$records = $this->getDatabaseConnection()->exec_SELECTgetRows('*', $tableName, $clause);
+
+		return $records;
+	}
+
+	/**
+	 * Returns a pointer to the database.
+	 *
+	 * @return \TYPO3\CMS\Core\Database\DatabaseConnection
+	 */
+	protected function getDatabaseConnection() {
+		return $GLOBALS['TYPO3_DB'];
+	}
+
+	/**
+	 * Returns an instance of the page repository.
+	 *
+	 * @return \TYPO3\CMS\Frontend\Page\PageRepository
+	 */
+	protected function getPageRepository() {
+		return $GLOBALS['TSFE']->sys_page;
+	}
+
 }

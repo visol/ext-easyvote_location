@@ -9,8 +9,8 @@ CREATE TABLE tx_easyvotelocation_domain_model_location (
 	location_type int(11) unsigned DEFAULT '0',
 	name varchar(255) DEFAULT '' NOT NULL,
 	address varchar(255) DEFAULT '' NOT NULL,
-	longitude double(11,2) DEFAULT '0.00' NOT NULL,
-	latitude double(11,2) DEFAULT '0.00' NOT NULL,
+	longitude double(10,8) DEFAULT '0.00' NOT NULL,
+	latitude double(10,8) DEFAULT '0.00' NOT NULL,
 	city varchar(255) DEFAULT '' NOT NULL,
 	creator varchar(255) DEFAULT '' NOT NULL,
 	last_updater varchar(255) DEFAULT '' NOT NULL,
@@ -60,7 +60,6 @@ CREATE TABLE tx_easyvotelocation_domain_model_locationtype (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	name varchar(255) DEFAULT '' NOT NULL,
-	icon int(11) unsigned NOT NULL default '0',
 	description text NOT NULL,
 	is_content_editable tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	locations int(11) unsigned DEFAULT '0' NOT NULL,

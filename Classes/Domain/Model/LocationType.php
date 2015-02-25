@@ -33,13 +33,6 @@ class LocationType extends AbstractValueObject {
 	protected $name = '';
 
 	/**
-	 * icon
-	 *
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 */
-	protected $icon = NULL;
-
-	/**
 	 * description
 	 *
 	 * @var string
@@ -98,25 +91,6 @@ class LocationType extends AbstractValueObject {
 	 */
 	public function setName($name) {
 		$this->name = $name;
-	}
-
-	/**
-	 * Returns the icon
-	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $icon
-	 */
-	public function getIcon() {
-		return $this->icon;
-	}
-
-	/**
-	 * Sets the icon
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $icon
-	 * @return void
-	 */
-	public function setIcon(\TYPO3\CMS\Extbase\Domain\Model\FileReference $icon) {
-		$this->icon = $icon;
 	}
 
 	/**

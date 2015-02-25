@@ -34,11 +34,9 @@ class LocationController extends ActionController {
 	protected $locationTypeRepository = NULL;
 
 	/**
-	 * action list
-	 *
 	 * @return void
 	 */
-	public function listAction() {
+	public function indexAction() {
 		$locations = $this->locationRepository->findAll();
 		$locationTypes = $this->locationTypeRepository->findAll();
 

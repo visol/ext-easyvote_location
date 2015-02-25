@@ -15,7 +15,7 @@ namespace Visol\EasyvoteLocation\JsonEncoder;
  */
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use Visol\EasyvoteLocation\Domain\Model\LocationType;
 
 /**
@@ -26,10 +26,10 @@ class LocationTypeEncoder implements JsonEncoderInterface {
 	/**
 	 * Encode to JSON the given objects.
 	 *
-	 * @param QueryResult $objects
-	 * @return string
+	 * @param QueryResultInterface|array $objects
+	 * @return array
 	 */
-	public function encode(QueryResult $objects){
+	public function encode($objects){
 
 		$collectedObjects = array();
 		/** @var LocationType $object */
@@ -41,7 +41,7 @@ class LocationTypeEncoder implements JsonEncoderInterface {
 			);
 		}
 
-		return json_encode($collectedObjects);
+		return $collectedObjects;
 	}
 
 	/**
@@ -58,11 +58,11 @@ class LocationTypeEncoder implements JsonEncoderInterface {
 	protected function getIcon(LocationType $locationType) {
 		$icon = '';
 		if ($locationType->getUid() === LocationType::TYPE_POST_BOX) {
-			$icon = 'PostBox.png';
+			$icon = 'PostBox.svg';
 		} elseif ($locationType->getUid() === LocationType::TYPE_MUNICIPAL_ADMINISTRATION) {
-			$icon = 'MunicipalAdministration.png';
+			$icon = 'MunicipalAdministration.svg';
 		} elseif ($locationType->getUid() === LocationType::TYPE_POLLING_STATION) {
-			$icon = 'PollingStation.png';
+			$icon = 'PollingStation.svg';
 		}
 		return $icon;
 	}

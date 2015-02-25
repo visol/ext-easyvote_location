@@ -17,16 +17,32 @@ namespace Visol\EasyvoteLocation\JsonEncoder;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
- * Interface dealing with JSON encoding of objects.
+ * Location Type encoder
  */
-interface JsonEncoderInterface {
+class LocationEncoder implements JsonEncoderInterface {
 
 	/**
 	 * Encode to JSON the given objects.
 	 *
-	 * @param QueryResultInterface|array $objects
-	 * @return string
+	 * @param QueryResultInterface|array $locations
+	 * @return array
 	 */
-	public function encode($objects);
+	public function encode($locations){
+
+		$collectedObjects = array();
+
+		foreach ($locations as $location) {
+
+			$collectedObjects[] = array(
+				'name' => $location['name'],
+				'latitude' => $location['latitude'] - 0,
+				'longitude' => $location['longitude'] - 0,
+				'type' => $location['location_type'],
+				'description'=> $location['description'],
+			);
+		}
+
+		return $collectedObjects;
+	}
 
 }

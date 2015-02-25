@@ -6,7 +6,7 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_easyvotelocation_domain_model_locationtype'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_easyvotelocation_domain_model_locationtype']['ctrl'],
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, icon, description, is_content_editable,'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, description, is_content_editable,'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -60,14 +60,6 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_locationtype'] = array(
 				'type' => 'input',
 				'size' => 30,
 				'eval' => 'trim'
-			),
-		),
-		'icon' => array(
-			'exclude' => 1,
-			'label' => 'LLL:EXT:easyvote_location/Resources/Private/Language/locallang_db.xlf:tx_easyvotelocation_domain_model_locationtype.icon',
-			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-				'icon',
-				array('maxitems' => 1)
 			),
 		),
 		'description' => array(
