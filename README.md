@@ -3,6 +3,10 @@ EasyVote Location
 
 TYPO3 CMS extension for displaying voting locations on a map.
 
+TODO
+----
+
+Static TypoScript to load in easyvote
 
 Features
 --------
@@ -25,3 +29,18 @@ Command Line Interface
 To import the Post Boxes
 
 	./typo3/cli_dispatch.phpsh extbase postbox:import --file ~/Files/PostBoxes.xml
+
+
+
+SQL server configuration
+------------------------
+
+To enable caching of locations markers, the SQL server must be configured to access large set of packets:
+
+
+```
+	[mysqld]
+
+	max_allowed_packet = 10M
+
+```

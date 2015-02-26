@@ -4,9 +4,25 @@ if (!defined ('TYPO3_MODE')) {
 }
 
 $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
-	'ctrl' => $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location']['ctrl'],
-	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, address, longitude, latitude, city, creator, last_updater, description, is_available_for_current_voting_day, photo, location_type',
+	'ctrl' => array(
+		'title'	=> 'LLL:EXT:easyvote_location/Resources/Private/Language/locallang_db.xlf:tx_easyvotelocation_domain_model_location',
+		'label' => 'name',
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+
+		'languageField' => 'sys_language_uid',
+		'transOrigPointerField' => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+
+		),
+		'searchFields' => 'name,address,longitude,latitude,city,creator,last_updater,description,is_available_for_current_voting_day,photo,location_type,',
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('easyvote_location') . 'Configuration/TCA/Location.php',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('easyvote_location') . 'Resources/Public/Icons/tx_easyvotelocation_domain_model_location.gif'
 	),
 	'types' => array(
 		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, address, longitude, latitude, city, creator, last_updater, description, is_available_for_current_voting_day, photo, location_type, '),
@@ -15,7 +31,7 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 		'1' => array('showitem' => ''),
 	),
 	'columns' => array(
-	
+
 		'sys_language_uid' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
@@ -156,7 +172,7 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 				'maxitems' => 1,
 			),
 		),
-		
+
 		'locationtype' => array(
 			'config' => array(
 				'type' => 'passthrough',

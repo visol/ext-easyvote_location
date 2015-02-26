@@ -16,6 +16,14 @@ function initialize() {
 
 	addMarkers();
 	addLegend();
+
+	/**
+	 * Register handler while map is updating in a way or another.
+	 */
+	google.maps.event.addListener(map, 'idle', function () {
+		// @todo store current center and zoom while developing
+	});
+
 }
 
 
