@@ -27,7 +27,7 @@ class LocationTypeEncoder implements JsonEncoderInterface {
 	 * Encode to JSON the given objects.
 	 *
 	 * @param QueryResultInterface|array $objects
-	 * @return array
+	 * @return string
 	 */
 	public function encode($objects){
 
@@ -41,7 +41,7 @@ class LocationTypeEncoder implements JsonEncoderInterface {
 			);
 		}
 
-		return $collectedObjects;
+		return json_encode($collectedObjects);
 	}
 
 	/**
@@ -58,11 +58,11 @@ class LocationTypeEncoder implements JsonEncoderInterface {
 	protected function getIcon(LocationType $locationType) {
 		$icon = '';
 		if ($locationType->getUid() === LocationType::TYPE_POST_BOX) {
-			$icon = 'PostBox.svg';
+			$icon = 'PostBox.png';
 		} elseif ($locationType->getUid() === LocationType::TYPE_MUNICIPAL_ADMINISTRATION) {
-			$icon = 'MunicipalAdministration.svg';
+			$icon = 'MunicipalAdministration.png';
 		} elseif ($locationType->getUid() === LocationType::TYPE_POLLING_STATION) {
-			$icon = 'PollingStation.svg';
+			$icon = 'PollingStation.png';
 		}
 		return $icon;
 	}

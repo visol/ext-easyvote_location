@@ -25,7 +25,7 @@ class LocationEncoder implements JsonEncoderInterface {
 	 * Encode to JSON the given objects.
 	 *
 	 * @param QueryResultInterface|array $locations
-	 * @return array
+	 * @return string
 	 */
 	public function encode($locations){
 
@@ -42,7 +42,7 @@ class LocationEncoder implements JsonEncoderInterface {
 			);
 		}
 
-		return $collectedObjects;
+		return json_encode($collectedObjects);
 	}
 
 }

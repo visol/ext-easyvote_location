@@ -14,6 +14,8 @@ namespace Visol\EasyvoteLocation\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Cache\Cache;
+use TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Visol\EasyvoteLocation\JsonEncoder\LocationEncoder;
@@ -35,12 +37,30 @@ class LocationApiController extends ActionController {
 	protected $locationRepository = NULL;
 
 	/**
-	 * @return void
+	 * @var \TYPO3\CMS\Core\Cache\Frontend\AbstractFrontend
+	 */
+	protected $cacheInstance;
+
+	/**
+	 * @return string
 	 */
 	public function listAction() {
-		$locations = $this->locationRepository->findAllForMaps();
-		$encodedLocations = $this->getLocationEncoder()->encode($locations);
-		$this->view->assign('value', $encodedLocations);
+		$this->initializeCache();
+
+		$cacheIdentifier = 'locations';
+		$response = $this->cacheInstance->get($cacheIdentifier);
+
+		if (!$response) {
+
+			$locations = $this->locationRepository->findAllForMaps();
+			$response = $this->getLocationEncoder()->encode($locations);
+
+			$tags = array();
+			$lifetime = '600'; // @todo fine a good interval. It could depends on the time of the day.
+			$this->cacheInstance->set($cacheIdentifier, $response, $tags, $lifetime);
+		}
+
+		return $response;
 	}
 
 	/**
@@ -49,4 +69,42 @@ class LocationApiController extends ActionController {
 	protected function getLocationEncoder() {
 		return GeneralUtility::makeInstance('Visol\EasyvoteLocation\JsonEncoder\LocationEncoder');
 	}
+
+	/**
+	 * Initialize cache instance to be ready to use
+	 *
+	 * @return void
+	 */
+	protected function initializeCache() {
+		Cache::initializeCachingFramework();
+		try {
+			$this->cacheInstance = $this->getCacheManager()->getCache('easyvote_location');
+		} catch (NoSuchCacheException $e) {
+			$this->cacheInstance = $this->getCacheFactory()->create(
+				'easyvote_location',
+				$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['easyvote_location']['frontend'],
+				$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['easyvote_location']['backend'],
+				$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['easyvote_location']['options']
+			);
+		}
+	}
+
+	/**
+	 * Return the Cache Manager
+	 *
+	 * @return \TYPO3\CMS\Core\Cache\CacheManager
+	 */
+	protected function getCacheManager() {
+		return GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager');
+	}
+
+	/**
+	 * Return the Cache Factory
+	 *
+	 * @return \TYPO3\CMS\Core\Cache\CacheFactory
+	 */
+	protected function getCacheFactory() {
+		return $GLOBALS['typo3CacheFactory'];
+	}
+
 }

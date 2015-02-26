@@ -1,5 +1,9 @@
 var map;
 var markers = [];
+
+/**
+ * Initialization of the map.
+ */
 function initialize() {
 
 	map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -10,111 +14,106 @@ function initialize() {
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
-	$.ajax({
-		//url: "/data.json",
-		url: EasyVote.Location,
-		//type: "POST",
-		//data: "{'id': '" + propertyid + "'}",
-		async: true,
-		cache: true,
-		//contentType: "application/json;",
-		//dataType: "json",
-		success: function (data, textStatus, jqXHR) { //
-			data = JSON && JSON.parse(data) || $.parseJSON(data);
-			//mydata = data;
-			//createPropertyMarkers();
+	addMarkers();
+	addLegend();
+}
 
 
-			for (var i = 0; i < data.length; i++) {
-				var location = data[i];
-
-
-				var sizeX = 16;
-				var sizeY = 16;
-				var icon = {
-					url: 'typo3conf/ext/easyvote_location/Resources/Public/Icons/PostBox.png',
-					size: new google.maps.Size(sizeX, sizeY),
-					origin: new google.maps.Point(0, 0),
-					anchor: new google.maps.Point(sizeX/2, sizeY/2)
-				};
-
-
-				var marker = new google.maps.Marker({
-					position: new google.maps.LatLng(location.latitude,  location.longitude),
-					map: map,
-					draggable: false,
-					icon: icon
-				});
-
-				//var marker = new google.maps.Marker({
-				//	position: new google.maps.LatLng(location.latitude,  location.longitude),
-				//	icon: icon
-				//});
-				//markers.push(marker);
-			}
-
-			//var markerCluster = new MarkerClusterer(map, markers);
-		},
-		error: function (xmlHttpRequest, textStatus, errorThrown) {
-			console.log(xmlHttpRequest.responseText);
-			console.log(textStatus);
-			console.log(errorThrown);
-			alert("Screen shot this error: " + xmlHttpRequest.toString() + " " + textStatus.toString() + " " + errorThrown.toString());
-		}
-	});
-
-	icons = EasyVote.LocationTypes;
-
-	function addMarker(location) {
-		var marker = new google.maps.Marker({
-			position: location.position,
-			icon: icons[location.type].icon,
-			map: map
-		});
-
-		var infowindow = new google.maps.InfoWindow({
-			content: location.text
-		});
-
-		google.maps.event.addListener(marker, 'click', function() {
-			infowindow.open(map,marker);
-		});
-	}
-
-	//var markers = [
-	//	{
-	//		position: new google.maps.LatLng(46.8131873, 8.2242101),
-	//		type: '3',
-	//		text: 'Uluru (Ayers Rock)'
-	//	}
-	//];
-
-	//var markers = [];
-	//for (var i = 0; i < 100; i++) {
-	//	var dataPhoto = data.photos[i];
-	//	var latLng = new google.maps.LatLng(dataPhoto.latitude,
-	//		dataPhoto.longitude);
-	//	var marker = new google.maps.Marker({
-	//		position: latLng
-	//	});
-	//	markers.push(marker);
-	//}
-	//var markerCluster = new MarkerClusterer(map, markers);
-	//for (var i = 0, marker; marker = markers[i]; i++) {
-	//	addMarker(marker);
-	//}
+/**
+ * Display
+ *
+ * @return void
+ */
+function addLegend() {
 
 	var legend = document.getElementById('legend');
-	for (var key in icons) {
-		var type = icons[key];
+	for (var key in EasyVote.LocationTypes) {
+		var type = EasyVote.LocationTypes[key];
 		var name = type.name;
 		var icon = type.icon;
 		var div = document.createElement('div');
-		//div.innerHTML = '<img src="' + icon + '"> ' + name;
+		div.innerHTML = '<img src="' + icon + '"> ' + name;
 		legend.appendChild(div);
 	}
 
 	map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+}
+
+/**
+ * Add bunch of markers.
+ *
+ * @return void
+ */
+function addMarkers() {
+	var serializedLocations = localStorage.getItem('EasyVote.Locations');
+	if (!serializedLocations) {
+		$.ajax({
+			url: EasyVote.Location,
+			//type: "POST",
+			//data: "{'id': '" + propertyid + "'}",
+			async: true,
+			cache: true,
+			//contentType: "application/json;",
+			//dataType: "json",
+			success: function (locations, textStatus, jqXHR) {
+
+				// Store
+				localStorage.setItem('EasyVote.Locations', locations); // JSON.stringify(locations)
+
+				locations = JSON && JSON.parse(locations) || $.parseJSON(locations);
+				createMarkers(locations);
+			},
+			error: function (xmlHttpRequest, textStatus, errorThrown) {
+				console.log(xmlHttpRequest.responseText);
+				console.log(textStatus);
+				console.log(errorThrown);
+				alert("Screen shot this error: " + xmlHttpRequest.toString() + " " + textStatus.toString() + " " + errorThrown.toString());
+			}
+		});
+	} else {
+		var locations = JSON.parse(serializedLocations);
+		createMarkers(locations);
+	}
+}
+
+/**
+ * Add bunch of markers.
+ *
+ * @param {array} locations
+ * @return void
+ */
+function createMarkers(locations) {
+	for (var i = 0; i < locations.length; i++) {
+		var location = locations[i];
+
+		var marker = createMarker(location)
+		markers.push(marker);
+	}
+
+	var markerCluster = new MarkerClusterer(map, markers);
+}
+
+/**
+ *
+ * @param location
+ * @return google.maps.Marker
+ */
+function createMarker(location) {
+	var marker = new google.maps.Marker({
+		position: new google.maps.LatLng(location.latitude,  location.longitude),
+		icon: EasyVote.LocationTypes[location.type].icon
+		//map: map
+	});
+
+	var infowindow = new google.maps.InfoWindow({
+		content: location.description
+	});
+
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.open(map,marker);
+	});
+
+	return marker;
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
