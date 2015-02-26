@@ -26,9 +26,14 @@ if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations
 	$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['easyvote_location'] = array();
 }
 
-// Override default Variable Frontend Cache to be String
+// Override default Frontend Cache to be String instead of Variable
 if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations']['easyvote_location']['frontend'])) {
 	$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations']['easyvote_location']['frontend'] = 'TYPO3\CMS\Core\Cache\Frontend\StringFrontend';
+}
+
+// Override default Backend Cache to be File instead of Database
+if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations']['easyvote_location']['backend'])) {
+	$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations']['easyvote_location']['backend'] = 'TYPO3\\CMS\\Core\\Cache\\Backend\\FileBackend';
 }
 
 // Register the cache table to be deleted when general caches is hit.

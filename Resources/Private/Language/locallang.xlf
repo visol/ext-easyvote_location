@@ -54,6 +54,46 @@
 			<trans-unit id="tx_easyvotelocation_domain_model_locationtype.locations">
 				<source>Locations</source>
 			</trans-unit>
+
+			<trans-unit id="post_box">
+				<source>Briefeinwurf</source>
+			</trans-unit>
+			<trans-unit id="last_emptying">
+				<source>Letzte Leerung</source>
+			</trans-unit>
+			<trans-unit id="hour">
+				<source>Uhr</source>
+			</trans-unit>
+			<trans-unit id="monday">
+				<source>Montag</source>
+			</trans-unit>
+			<trans-unit id="tuesday">
+				<source>Dienstag</source>
+			</trans-unit>
+			<trans-unit id="wednesday">
+				<source>Mittwoch</source>
+			</trans-unit>
+			<trans-unit id="thursday">
+				<source>Donnerstag</source>
+			</trans-unit>
+			<trans-unit id="friday">
+				<source>Freitag</source>
+			</trans-unit>
+			<trans-unit id="saturday">
+				<source>Samstag</source>
+			</trans-unit>
+			<trans-unit id="sunday">
+				<source>Sontag</source>
+			</trans-unit>
+			<trans-unit id="post_a">
+				<source>A-Post</source>
+			</trans-unit>
+			<trans-unit id="post_b">
+				<source>B-Post</source>
+			</trans-unit>
+			<trans-unit id="find_my_way">
+				<source>Find my way</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

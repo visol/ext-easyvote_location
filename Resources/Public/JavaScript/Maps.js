@@ -23,7 +23,6 @@ function initialize() {
 	google.maps.event.addListener(map, 'idle', function () {
 		// @todo store current center and zoom while developing
 	});
-
 }
 
 
@@ -53,7 +52,11 @@ function addLegend() {
  * @return void
  */
 function addMarkers() {
-	var serializedLocations = localStorage.getItem('EasyVote.Locations');
+	//var serializedLocations = localStorage.getItem('EasyVote.Locations');
+	// localStorage is not big enough, rather consider
+	// http://stackoverflow.com/questions/2989284/what-is-the-max-size-of-localstorage-values
+	// http://rhaboo.org/
+	var serializedLocations = null;
 	if (!serializedLocations) {
 		$.ajax({
 			url: EasyVote.Location,
@@ -66,16 +69,15 @@ function addMarkers() {
 			success: function (locations, textStatus, jqXHR) {
 
 				// Store
-				localStorage.setItem('EasyVote.Locations', locations); // JSON.stringify(locations)
+				//localStorage.setItem('EasyVote.Locations', locations); // JSON.stringify(locations)
 
 				locations = JSON && JSON.parse(locations) || $.parseJSON(locations);
 				createMarkers(locations);
 			},
 			error: function (xmlHttpRequest, textStatus, errorThrown) {
-				console.log(xmlHttpRequest.responseText);
-				console.log(textStatus);
-				console.log(errorThrown);
-				alert("Screen shot this error: " + xmlHttpRequest.toString() + " " + textStatus.toString() + " " + errorThrown.toString());
+				console.log(xmlHttpRequest.toString());
+				console.log(textStatus.toString());
+				console.log(errorThrown.toString());
 			}
 		});
 	} else {
