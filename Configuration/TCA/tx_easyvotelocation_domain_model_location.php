@@ -172,8 +172,48 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 				'maxitems' => 1,
 			),
 		),
-
 		'locationtype' => array(
+			'config' => array(
+				'type' => 'passthrough',
+			),
+		),
+
+		'street' => array(
+			'config' => array(
+				'type' => 'passthrough',
+			),
+		),
+		'zip' => array(
+			'config' => array(
+				'type' => 'passthrough',
+			),
+		),
+		'emptying_time_day_1' => array(
+			'config' => array(
+				'type' => 'passthrough',
+			),
+		),
+		'emptying_time_day_2' => array(
+			'config' => array(
+				'type' => 'passthrough',
+			),
+		),
+		'emptying_time_day_3' => array(
+			'config' => array(
+				'type' => 'passthrough',
+			),
+		),
+		'emptying_time_day_4' => array(
+			'config' => array(
+				'type' => 'passthrough',
+			),
+		),
+		'emptying_time_day_6' => array(
+			'config' => array(
+				'type' => 'passthrough',
+			),
+		),
+		'emptying_time_day_7' => array(
 			'config' => array(
 				'type' => 'passthrough',
 			),

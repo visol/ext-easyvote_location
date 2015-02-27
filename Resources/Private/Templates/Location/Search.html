@@ -1,33 +1,35 @@
 <html xmlns:f="http://typo3.org/ns/fluid/ViewHelpers"
-      xmlns:location="http://typo3.org/ns/Visol/EasyvoteLocation/ViewHelpers"
-      xmlns:h="http://typo3.org/ns/Helhum/TyposcriptRendering/ViewHelpers">
+      xmlns:location="http://typo3.org/ns/Visol/EasyvoteLocation/ViewHelpers">
 
 <f:layout name="Default"/>
 
 <f:section name="main">
 
 	<script>
+		if (typeof EasyVote !== 'object') {
+			window.EasyVote = {}
+		}
 		var postalCodeServiceUrl = "{f:uri.action(controller: 'City', action:'listCitiesByPostalCode', pluginName: 'communityAjax', absolute: 'TRUE', noCacheHash: 'TRUE', pageType: 999, pageUid: settings.communityAjaxPid, extensionName: 'easyvote')}";
 
-		Easyvote.PlaceholderPostalCode = '{f:translate(key: "placeholder_postal_code"};'
+		EasyVote.PlaceholderPostalCode = '{f:translate(key: "placeholder_postal_code")}';
 	</script>
 	<location:script file="{f:uri.resource(path:'JavaScript/Search.js')}"/>
 
-	<f:form controller="LocationApi" method="search">
+	<div class="content-box">
+		<f:form controller="LocationApi" method="search">
+			<div class="form-group">
 
-		<div class="form-group">
-			<label>
-				<strong>
-					<f:translate key="search"/>
-				</strong>
-			</label>
-			<f:form.textfield class="form-control communityUser-citySelection"
-			                  property="citySelection"
-			                  additionalAttributes="{required: required}"/>
-		</div>
-
-	</f:form>
-
+				<label>
+					<strong>
+						<f:translate key="search"/>
+					</strong>
+				</label>
+				<f:form.textfield class="form-control communityUser-citySelection"
+				                  property="citySelection"
+				                  additionalAttributes="{required: required}"/>
+			</div>
+		</f:form>
+	</div>
 </f:section>
 
 </html>

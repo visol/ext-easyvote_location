@@ -20,7 +20,7 @@ function initialize() {
 	/**
 	 * Register handler while map is updating in a way or another.
 	 */
-	google.maps.event.addListener(map, 'idle', function () {
+	google.maps.event.addListener(map, 'idle', function() {
 		// @todo store current center and zoom while developing
 	});
 }
@@ -52,29 +52,21 @@ function addLegend() {
  * @return void
  */
 function addMarkers() {
-	//var serializedLocations = localStorage.getItem('EasyVote.Locations');
-	// localStorage is not big enough, rather consider
-	// http://stackoverflow.com/questions/2989284/what-is-the-max-size-of-localstorage-values
-	// http://rhaboo.org/
-	var serializedLocations = null;
+	var serializedLocations = sessionStorage.getItem('EasyVote.Locations');
+	//var serializedLocations = null;
 	if (!serializedLocations) {
 		$.ajax({
-			url: EasyVote.Location,
-			//type: "POST",
-			//data: "{'id': '" + propertyid + "'}",
+			url: '/routing/locations',
 			async: true,
 			cache: true,
-			//contentType: "application/json;",
-			//dataType: "json",
-			success: function (locations, textStatus, jqXHR) {
+			success: function(locations) {
 
-				// Store
-				//localStorage.setItem('EasyVote.Locations', locations); // JSON.stringify(locations)
+				// Store data for the session
+				sessionStorage.setItem('EasyVote.Locations', JSON.stringify(locations));
 
-				locations = JSON && JSON.parse(locations) || $.parseJSON(locations);
 				createMarkers(locations);
 			},
-			error: function (xmlHttpRequest, textStatus, errorThrown) {
+			error: function(xmlHttpRequest, textStatus, errorThrown) {
 				console.log(xmlHttpRequest.toString());
 				console.log(textStatus.toString());
 				console.log(errorThrown.toString());
@@ -110,17 +102,27 @@ function createMarkers(locations) {
  */
 function createMarker(location) {
 	var marker = new google.maps.Marker({
-		position: new google.maps.LatLng(location.latitude,  location.longitude),
+		id: location.id,
+		position: new google.maps.LatLng(location.latitude, location.longitude),
 		icon: EasyVote.LocationTypes[location.type].icon
 		//map: map
 	});
 
 	var infowindow = new google.maps.InfoWindow({
-		content: location.description
+		content: '<img src="/typo3conf/ext/easyvote_location/Resources/Public/Icons/loading.gif" alt="" />'
 	});
 
 	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.open(map,marker);
+		infowindow.open(map, marker);
+		var isMissingContent = infowindow.getContent().match('loading.gif');
+		if (isMissingContent) {
+			$.ajax({
+				url: '/routing/locations/' + marker.id,
+				success: function(location) {
+					infowindow.setContent(location.description);
+				}
+			});
+		}
 	});
 
 	return marker;

@@ -22,81 +22,104 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 class Location extends AbstractEntity {
 
 	/**
-	 * name
-	 *
 	 * @var string
 	 */
 	protected $name = '';
 
 	/**
-	 * address
-	 *
 	 * @var string
 	 */
 	protected $address = '';
 
 	/**
-	 * longitude
-	 *
 	 * @var float
 	 */
 	protected $longitude = 0.0;
 
 	/**
-	 * latitude
-	 *
 	 * @var float
 	 */
 	protected $latitude = 0.0;
 
 	/**
-	 * city
-	 *
 	 * @var string
 	 */
 	protected $city = '';
 
 	/**
-	 * creator
-	 *
 	 * @var string
 	 */
 	protected $creator = '';
 
 	/**
-	 * lastUpdater
-	 *
 	 * @var string
 	 */
 	protected $lastUpdater = '';
 
 	/**
-	 * description
-	 *
 	 * @var string
 	 */
 	protected $description = '';
 
 	/**
-	 * isAvailableForCurrentVotingDay
-	 *
 	 * @var string
 	 */
 	protected $isAvailableForCurrentVotingDay = '';
 
 	/**
-	 * photo
-	 *
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
 	 */
 	protected $photo = NULL;
 
 	/**
-	 * locationType
-	 *
 	 * @var \Visol\EasyvoteLocation\Domain\Model\LocationType
 	 */
 	protected $locationType = NULL;
+
+	/**
+	 * @var string
+	 */
+	protected $street = '';
+
+	/**
+	 * @var string
+	 */
+	protected $zip = '';
+
+	/**
+	 * @var string
+	 */
+	protected $emptyingTimeDay1 = '';
+
+	/**
+	 * @var string
+	 */
+	protected $emptyingTimeDay2 = '';
+
+	/**
+	 * @var string
+	 */
+	protected $emptyingTimeDay3 = '';
+
+	/**
+	 * @var string
+	 */
+	protected $emptyingTimeDay4 = '';
+
+	/**
+	 * @var string
+	 */
+	protected $emptyingTimeDay5 = '';
+
+	/**
+	 * @var string
+	 */
+	protected $emptyingTimeDay6 = '';
+
+	/**
+	 * @var string
+	 */
+	protected $emptyingTimeDay7 = '';
 
 	/**
 	 * Returns the name
@@ -305,6 +328,150 @@ class Location extends AbstractEntity {
 	 */
 	public function setLocationType(\Visol\EasyvoteLocation\Domain\Model\LocationType $locationType) {
 		$this->locationType = $locationType;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getStreet() {
+		return $this->street;
+	}
+
+	/**
+	 * @param string $street
+	 * @return $this
+	 */
+	public function setStreet($street) {
+		$this->street = $street;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getZip() {
+		return $this->zip;
+	}
+
+	/**
+	 * @param string $zip
+	 * @return $this
+	 */
+	public function setZip($zip) {
+		$this->zip = $zip;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getEmptyingTimeDay1() {
+		return $this->emptyingTimeDay1;
+	}
+
+	/**
+	 * @param string $emptyingTimeDay1
+	 * @return $this
+	 */
+	public function setEmptyingTimeDay1($emptyingTimeDay1) {
+		$this->emptyingTimeDay1 = $emptyingTimeDay1;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getEmptyingTimeDay2() {
+		return $this->emptyingTimeDay2;
+	}
+
+	/**
+	 * @param string $emptyingTimeDay2
+	 * @return $this
+	 */
+	public function setEmptyingTimeDay2($emptyingTimeDay2) {
+		$this->emptyingTimeDay2 = $emptyingTimeDay2;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getEmptyingTimeDay3() {
+		return $this->emptyingTimeDay3;
+	}
+
+	/**
+	 * @param string $emptyingTimeDay3
+	 * @return $this
+	 */
+	public function setEmptyingTimeDay3($emptyingTimeDay3) {
+		$this->emptyingTimeDay3 = $emptyingTimeDay3;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getEmptyingTimeDay4() {
+		return $this->emptyingTimeDay4;
+	}
+
+	/**
+	 * @param string $emptyingTimeDay4
+	 * @return $this
+	 */
+	public function setEmptyingTimeDay4($emptyingTimeDay4) {
+		$this->emptyingTimeDay4 = $emptyingTimeDay4;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getEmptyingTimeDay5() {
+		return $this->emptyingTimeDay5;
+	}
+
+	/**
+	 * @param string $emptyingTimeDay5
+	 * @return $this
+	 */
+	public function setEmptyingTimeDay5($emptyingTimeDay5) {
+		$this->emptyingTimeDay5 = $emptyingTimeDay5;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getEmptyingTimeDay6() {
+		return $this->emptyingTimeDay6;
+	}
+
+	/**
+	 * @param string $emptyingTimeDay6
+	 * @return $this
+	 */
+	public function setEmptyingTimeDay6($emptyingTimeDay6) {
+		$this->emptyingTimeDay6 = $emptyingTimeDay6;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getEmptyingTimeDay7() {
+		return $this->emptyingTimeDay7;
+	}
+
+	/**
+	 * @param string $emptyingTimeDay7
+	 * @return $this
+	 */
+	public function setEmptyingTimeDay7($emptyingTimeDay7) {
+		$this->emptyingTimeDay7 = $emptyingTimeDay7;
+		return $this;
 	}
 
 }

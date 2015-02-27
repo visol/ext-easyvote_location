@@ -1,0 +1,21 @@
+####################
+# Location
+####################
+-
+  name: 'List all Voting Points'
+  uriPattern: 'locations/{location}'
+  defaults:
+    '@package':    'Visol.Easyvote_location'
+    '@plugin':     'Location'
+    '@controller': 'LocationApi'
+    '@action':     'show'
+  httpMethods: ['GET']
+-
+  name: 'List all Voting Points'
+  uriPattern: 'locations'
+  defaults:
+    '@package':    'Visol.Easyvote_location'
+    '@plugin':     'Location'
+    '@controller': 'LocationApi'
+    '@action':     'list'
+  httpMethods: ['GET']

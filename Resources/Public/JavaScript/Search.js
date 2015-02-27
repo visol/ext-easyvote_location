@@ -1,7 +1,7 @@
 if (typeof postalCodeServiceUrl === 'string') {
 	var $postalCodeSelector = $(".communityUser-citySelection");
 	$postalCodeSelector.select2({
-		placeholder: Easyvote.PlaceholderPostalCode,
+		placeholder: EasyVote.PlaceholderPostalCode,
 		minimumInputLength: 2,
 		ajax: {
 			url: postalCodeServiceUrl,
@@ -24,6 +24,7 @@ if (typeof postalCodeServiceUrl === 'string') {
 		}
 	}).on('change', function(e) {
 		var data = $(this).select2('data');
-		map.setCenter(new google.maps.LatLng(data.latitude, data.longitude), 13);
+		map.setCenter(new google.maps.LatLng(data.latitude, data.longitude));
+		map.setZoom(14);
 	});
 }

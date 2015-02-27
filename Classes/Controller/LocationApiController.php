@@ -18,6 +18,8 @@ use TYPO3\CMS\Core\Cache\Cache;
 use TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Visol\EasyvoteLocation\DataFormatter\LocationFormatter;
+use Visol\EasyvoteLocation\Domain\Model\Location;
 use Visol\EasyvoteLocation\JsonEncoder\LocationEncoder;
 
 /**
@@ -60,7 +62,16 @@ class LocationApiController extends ActionController {
 			$this->cacheInstance->set($cacheIdentifier, $response, $tags, $lifetime);
 		}
 
+		$this->response->setHeader('Content-Type', 'application/json');
 		return $response;
+	}
+
+	/**
+	 * @param Location $location
+	 * @return string
+	 */
+	public function showAction(Location $location) {
+		$this->view->assign('value', $this->getLocationFormatter()->format($location));
 	}
 
 	/**
@@ -68,6 +79,13 @@ class LocationApiController extends ActionController {
 	 */
 	protected function getLocationEncoder() {
 		return GeneralUtility::makeInstance('Visol\EasyvoteLocation\JsonEncoder\LocationEncoder');
+	}
+
+	/**
+	 * @return LocationFormatter
+	 */
+	protected function getLocationFormatter() {
+		return GeneralUtility::makeInstance('Visol\EasyvoteLocation\DataFormatter\LocationFormatter');
 	}
 
 	/**

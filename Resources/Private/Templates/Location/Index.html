@@ -1,6 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/fluid/ViewHelpers"
-      xmlns:location="http://typo3.org/ns/Visol/EasyvoteLocation/ViewHelpers"
-      xmlns:h="http://typo3.org/ns/Helhum/TyposcriptRendering/ViewHelpers">
+      xmlns:location="http://typo3.org/ns/Visol/EasyvoteLocation/ViewHelpers">
 
 <f:layout name="Default"/>
 
@@ -16,12 +15,9 @@
 			background: white;
 			padding: 10px;
 		}
-
 	</style>
 
-
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
-
 
 	<location:script file="{f:uri.resource(path:'JavaScript/Maps.js')}"/>
 	<location:script file="{f:uri.resource(path:'JavaScript/Libraries/MarkerClusterer/markerclusterer.min.js')}"/>
@@ -30,16 +26,12 @@
 		<location:maps.coordinate type="latitude"/>
 		<location:maps.zoom />
 		<location:maps.toJson objects="{locationTypes}" type="locationType"/>
-		EasyVote.Location = '<h:uri.ajaxAction controller="LocationApi" action="list" absolute="TRUE" />';
 	</location:maps>
 
 	<div id="legend">
-
 	</div>
 
-
 	<div id="map-canvas"></div>
-
 
 </f:section>
 
