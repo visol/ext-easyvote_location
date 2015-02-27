@@ -18,6 +18,18 @@ if (!defined('TYPO3_MODE')) {
 	)
 );
 
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+	'Visol.easyvote_location',
+	'Pi2',
+	array(
+		'Location' => 'search',
+	),
+	// non-cacheable actions
+	array(
+		'Location' => 'search', // @todo remove me!?
+	)
+);
+
 // Configure commands that can be run from the cli_dispatch.phpsh script.
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Visol\EasyvoteLocation\Command\PostBoxCommandController';
 

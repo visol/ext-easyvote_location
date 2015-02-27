@@ -44,4 +44,27 @@ class LocationController extends ActionController {
 		$this->view->assign('locationTypes', $locationTypes);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function searchAction() {
+		$this->view->assign('settings', $this->getGlobalSettings());
+	}
+
+	/**
+	 * @return array
+	 */
+	protected function getGlobalSettings(){
+		return $this->getFrontendObject()->tmpl->setup['plugin.']['tx_easyvote.']['settings.'];
+	}
+
+	/**
+	 * Returns an instance of the Frontend object.
+	 *
+	 * @return \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
+	 */
+	protected function getFrontendObject() {
+		return $GLOBALS['TSFE'];
+	}
+
 }

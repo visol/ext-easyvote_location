@@ -94,6 +94,12 @@
 			<trans-unit id="find_my_way">
 				<source>Find my way</source>
 			</trans-unit>
+			<trans-unit id="search">
+				<source>Suche</source>
+			</trans-unit>
+			<trans-unit id="placeholder_postal_code">
+				<source>PLZ eingeben...</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
