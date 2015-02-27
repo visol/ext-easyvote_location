@@ -7,24 +7,24 @@ var markers = [];
 function initialize() {
 
 	map = new google.maps.Map(document.getElementById('map-canvas'), {
-		//zoom: EasyVote.Zoom,
-		zoom: 12,
+		zoom: EasyVote.Zoom,
 		center: new google.maps.LatLng(EasyVote.Latitude, EasyVote.Longitude),
-		//center: new google.maps.LatLng(37.4419, -122.1419),
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
 	addMarkers();
 	addLegend();
 
-	/**
-	 * Register handler while map is updating in a way or another.
-	 */
-	google.maps.event.addListener(map, 'idle', function() {
-		// @todo store current center and zoom while developing
-	});
+	// Try to position the map with current location.
+	if (navigator.geolocation) {
+		var timeoutVal = 10 * 1000 * 1000;
+		navigator.geolocation.getCurrentPosition(
+			setPositionOnMap,
+			positionMapError,
+			{ enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0 }
+		);
+	}
 }
-
 
 /**
  * Display
@@ -128,5 +128,26 @@ function createMarker(location) {
 	return marker;
 }
 
+/**
+ *
+ * @param error
+ */
+function positionMapError(error) {
+	var errors = {
+		1: 'Permission denied',
+		2: 'Position unavailable',
+		3: 'Request timeout'
+	};
+	//console.log("Error: " + errors[error.code]);
+}
+
+/**
+ *
+ * @param position
+ */
+function setPositionOnMap(position) {
+	map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+	map.setZoom(14);
+}
 google.maps.event.addDomListener(window, 'load', initialize);
 
