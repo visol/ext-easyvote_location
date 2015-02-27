@@ -6,7 +6,6 @@ TYPO3 CMS extension for displaying voting locations on a map.
 TODO
 ----
 
-* Static TypoScript to load in easyvote
 * Check if Localization for Location could be avoided.
 
 Features
