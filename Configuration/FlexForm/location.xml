@@ -1,0 +1,28 @@
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Configuration</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.nextVotingDay>
+						<TCEforms>
+							<label>Next voting day. Leave blank to automatically get the next voting day.</label>
+							<config>
+								<type>input</type>
+								<size>8</size>
+								<eval>date</eval>
+								<checkbox>1</checkbox>
+							</config>
+						</TCEforms>
+					</settings.nextVotingDay>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>
