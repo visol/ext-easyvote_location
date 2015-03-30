@@ -53,7 +53,6 @@ class LocationApiController extends ActionController {
 		$response = $this->cacheInstance->get($cacheIdentifier);
 
 		if (!$response) {
-
 			$locations = $this->locationRepository->findAllForMaps();
 			$response = $this->getLocationEncoder()->encode($locations);
 

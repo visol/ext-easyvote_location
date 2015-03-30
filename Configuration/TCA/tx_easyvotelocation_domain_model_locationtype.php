@@ -21,7 +21,6 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_locationtype'] = array(
 
 		),
 		'searchFields' => 'name,icon,description,is_content_editable,locations,',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('easyvote_location') . 'Configuration/TCA/LocationType.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('easyvote_location') . 'Resources/Public/Icons/tx_easyvotelocation_domain_model_locationtype.gif'
 	),
 	'types' => array(

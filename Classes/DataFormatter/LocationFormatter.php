@@ -69,7 +69,7 @@ class LocationFormatter {
 			 *  Find my way
 			 */
 			$text = <<<EOF
-%s<br/>
+<strong>%s</strong><br/r>
 %s<br/>
 %s %s<br/>
 <br/>

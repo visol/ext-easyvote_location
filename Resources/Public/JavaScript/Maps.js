@@ -143,10 +143,9 @@ function createMarkers(locations) {
 		var location = locations[i];
 
 		var marker = createMarker(location);
-		var locationType = parseInt(location.type);
-		if (locationType === 1) {
+		if (location.type === 1) {
 			markers1.push(marker);
-		} else if (locationType === 2 || locationType === 3) {
+		} else if (location.type === 2 || location.type === 3) {
 			markers2.push(marker);
 		}
 	}
@@ -206,23 +205,23 @@ function createMarker(location) {
 		//map: map
 	});
 
-	var infowindow = new google.maps.InfoWindow({
+	var infoWindow = new google.maps.InfoWindow({
 		content: '<img src="/typo3conf/ext/easyvote_location/Resources/Public/Icons/loading.gif" alt="" />'
 	});
 
 	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.open(map, marker);
+		infoWindow.open(map, marker);
 
 		// Center the map around the bubble.
 		var position = marker.getPosition();
 		position.k = position.k + 0.001;
 		map.setCenter(position);
-		var isMissingContent = infowindow.getContent().match('loading.gif');
+		var isMissingContent = infoWindow.getContent().match('loading.gif');
 		if (isMissingContent) {
 			$.ajax({
 				url: '/routing/locations/' + marker.id,
 				success: function(location) {
-					infowindow.setContent(location.description);
+					infoWindow.setContent(location.description);
 				}
 			});
 		}
