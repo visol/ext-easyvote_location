@@ -21,9 +21,56 @@ function initialize() {
 		navigator.geolocation.getCurrentPosition(
 			setPositionOnMap,
 			positionMapError,
-			{ enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0 }
+			{enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0}
 		);
 	}
+
+	// Save with and height for full screen mode
+	var googleMapWidth = $("#map-container").css('width');
+	var googleMapHeight = $("#map-container").css('height');
+
+	$('#btn-enter-full-screen').click(function() {
+		$("#map-container").css({
+			position: 'fixed',
+			top: 0,
+			left: 0,
+			width: '100%',
+			height: '100%',
+			backgroundColor: 'white'
+		});
+
+		$("#map-canvas").css({
+			height: '100%'
+		});
+
+		google.maps.event.trigger(map, 'resize');
+
+		// Gui
+		$('#sitefooter').hide();
+		$('#btn-enter-full-screen').toggle();
+		$('#btn-exit-full-screen').toggle();
+		return false;
+	});
+
+	$('#btn-exit-full-screen').click(function() {
+
+		$("#map-container").css({
+			position: 'relative',
+			top: 0,
+			//left: 0,
+			width: googleMapWidth,
+			height: googleMapHeight,
+			backgroundColor: 'transparent'
+		});
+
+		google.maps.event.trigger(map, 'resize');
+
+		// Gui
+		$('#sitefooter').show();
+		$('#btn-enter-full-screen').toggle();
+		$('#btn-exit-full-screen').toggle();
+		return false;
+	});
 }
 
 /**

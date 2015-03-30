@@ -100,6 +100,12 @@
 			<trans-unit id="placeholder_postal_code">
 				<source>PLZ eingeben...</source>
 			</trans-unit>
+			<trans-unit id="enter-full-screen">
+				<source>Vollbild-Modus</source>
+			</trans-unit>
+			<trans-unit id="exit-full-screen">
+				<source>Vollbild-Modus verlassen</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

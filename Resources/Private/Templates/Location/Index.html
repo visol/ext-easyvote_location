@@ -24,14 +24,24 @@
 	<location:maps>
 		<location:maps.coordinate type="longitude"/>
 		<location:maps.coordinate type="latitude"/>
-		<location:maps.zoom />
+		<location:maps.zoom/>
 		<location:maps.toJson objects="{locationTypes}" type="locationType"/>
 	</location:maps>
 
 	<div id="legend">
 	</div>
 
-	<div id="map-canvas"></div>
+	<div id="map-container">
+		<div class="btn-full-screen" style="text-align: right">
+			<a href="#" id="btn-enter-full-screen">
+				<f:translate key="enter-full-screen"/>
+			</a>
+			<a href="#" id="btn-exit-full-screen" style="display: none">
+				<f:translate key="exit-full-screen"/>
+			</a>
+		</div>
+		<div id="map-canvas"></div>
+	</div>
 
 </f:section>
 
