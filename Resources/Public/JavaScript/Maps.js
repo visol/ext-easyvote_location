@@ -1,5 +1,4 @@
 var map;
-var markers = [];
 
 /**
  * Initialization of the map.
@@ -99,8 +98,10 @@ function addLegend() {
  * @return void
  */
 function addMarkers() {
+	//var serializedLocations = null; // debug
 	var serializedLocations = sessionStorage.getItem('EasyVote.Locations');
-	//var serializedLocations = null;
+
+	// If we don't have the points in Session Storage, fetch them by Ajax.
 	if (!serializedLocations) {
 		$.ajax({
 			url: '/routing/locations',
@@ -120,6 +121,8 @@ function addMarkers() {
 			}
 		});
 	} else {
+
+		// We have data coming from the Session Storage. Simply create points on the map.
 		var locations = JSON.parse(serializedLocations);
 		createMarkers(locations);
 	}
@@ -132,18 +135,66 @@ function addMarkers() {
  * @return void
  */
 function createMarkers(locations) {
+
+	var markers1 = [];
+	var markers2 = [];
+
 	for (var i = 0; i < locations.length; i++) {
 		var location = locations[i];
 
-		var marker = createMarker(location)
-		markers.push(marker);
+		var marker = createMarker(location);
+		var locationType = parseInt(location.type);
+		if (locationType === 1) {
+			markers1.push(marker);
+		} else if (locationType === 2 || locationType === 3) {
+			markers2.push(marker);
+		}
 	}
 
-	var markerCluster = new MarkerClusterer(map, markers);
+	var options = {
+		//gridSize: 100,
+		maxZoom: 13,
+		styles: [
+			{
+				height: 30,
+				width: 30,
+				textColor: '#ffffff',
+				textSize: 11,
+				url: "typo3conf/ext/easyvote_location/Resources/Public/Icons/ClustererBackground01.png"
+			}
+		]
+	};
+
+	new MarkerClusterer(map, markers1, options);
+	options.styles = [
+		{
+			height: 30,
+			width: 30,
+			textColor: '#ffffff',
+			textSize: 11,
+			url: "typo3conf/ext/easyvote_location/Resources/Public/Icons/ClustererBackground02.png"
+		}
+	];
+
+	new MarkerClusterer(map, markers2, options);
+
 }
 
 /**
- *
+ * @param location
+ * @return string
+ */
+function computeIcon(location) {
+	// Remove the trailing ".png" extension
+	var iconBasePath = EasyVote.LocationTypes[location.type].icon.replace('.png', '');
+	if (!location.active) {
+		iconBasePath += 'Gray';
+	}
+	return iconBasePath + '.png';
+}
+
+
+/**
  * @param location
  * @return google.maps.Marker
  */
@@ -151,7 +202,7 @@ function createMarker(location) {
 	var marker = new google.maps.Marker({
 		id: location.id,
 		position: new google.maps.LatLng(location.latitude, location.longitude),
-		icon: EasyVote.LocationTypes[location.type].icon
+		icon: computeIcon(location)
 		//map: map
 	});
 
@@ -161,6 +212,11 @@ function createMarker(location) {
 
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.open(map, marker);
+
+		// Center the map around the bubble.
+		var position = marker.getPosition();
+		position.k = position.k + 0.001;
+		map.setCenter(position);
 		var isMissingContent = infowindow.getContent().match('loading.gif');
 		if (isMissingContent) {
 			$.ajax({
@@ -185,7 +241,6 @@ function positionMapError(error) {
 		2: 'Position unavailable',
 		3: 'Request timeout'
 	};
-	//console.log("Error: " + errors[error.code]);
 }
 
 /**
