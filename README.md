@@ -29,3 +29,19 @@ Command Line Interface
 To import the Post Boxes
 
 	./typo3/cli_dispatch.phpsh extbase postbox:import --file ~/Files/PostBoxes.xml
+
+
+Unit Test
+---------
+
+Guidance for running the Unit Test in this extension
+
+```
+
+	# Install the PHPUnit Framework
+	cd typo3_src
+	composer install
+
+	# Run the test
+	typo3_src/bin/phpunit --colors -c typo3/sysext/core/Build/UnitTests.xml typo3conf/ext/easyvote_location/Tests/Unit
+```

@@ -17,11 +17,16 @@ namespace Visol\EasyvoteLocation\JsonEncoder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use Visol\Easyvote\Domain\Model\VotingDay;
+use Visol\EasyvoteLocation\Domain\Model\LocationType;
 
 /**
  * Location Type encoder
  */
 class LocationEncoder implements JsonEncoderInterface {
+
+	const DAY = 86400;
+	const HOUR = 3600;
+	const MINUTE = 60;
 
 	/**
 	 * @var int
@@ -73,20 +78,35 @@ class LocationEncoder implements JsonEncoderInterface {
 
 		if (!$votingLimit) {
 			$isActive = FALSE;
-		} elseif ($locationType === 1) {
-
-			$day4 = explode(':', $location['emptying_time_day_4']); // typical value 19:00:00
-			$hour = $day4[0] * 3600;
-			$minute = $day4[1] * 60;
-			$day4Time = 86400 - $hour + $minute; // delta time to be removed between midnight and emptying time.
-
-			// 3 corresponds to 3 days as from Sunday midnight.
-			$votingLimit = $votingLimit - (86400 * 3) - $day4Time;
-			$isActive = $votingLimit > time();
+		} elseif ($locationType === LocationType::TYPE_POST_BOX) {
+			$isActive = $this->isActiveForPostBox($location, $votingLimit);
 		} else {
 			// @todo
 		}
 		return $isActive;
+	}
+
+	/**
+	 * @param array $location
+	 * @param int $votingLimit
+	 * @return bool
+	 */
+	public function isActiveForPostBox(array $location, $votingLimit) {
+		$day4 = explode(':', $location['emptying_time_day_4']); // typical value 19:00:00
+		$hour = $day4[0] * self::HOUR;
+		$minute = $day4[1] * self::MINUTE;
+		$day4Time = self::DAY - $hour + $minute; // delta time to be removed between midnight and emptying time.
+
+		// 3 corresponds to 3 days as from Sunday midnight.
+		$votingLimit = $votingLimit - (self::DAY * 3) - $day4Time;
+		return $votingLimit > $this->getCurrentTime();
+	}
+
+	/**
+	 * @return int
+	 */
+	protected function getCurrentTime() {
+		return time();
 	}
 
 	/**
@@ -97,7 +117,7 @@ class LocationEncoder implements JsonEncoderInterface {
 
 			if ($this->hasOverrideByContentElement()) {
 				$this->votingLimit = $this->getVotingLimitFromContentElement();
-			} elseif($this->hasVotingDay()) {
+			} elseif ($this->hasVotingDay()) {
 				$this->votingLimit = $this->getVotingLimitFromVotingDay();
 			} else {
 				$this->votingLimit = 0;
@@ -119,20 +139,21 @@ class LocationEncoder implements JsonEncoderInterface {
 	 * @return int
 	 */
 	protected function getVotingLimitFromVotingDay() {
-		return $this->votingDay->getVotingDate()->getTimestamp() + 86400 - 1;
+		return $this->votingDay->getVotingDate()->getTimestamp() + self::DAY; // midnight
 	}
 
 	/**
 	 * @return bool
 	 */
 	protected function getVotingLimitFromContentElement() {
-		return $this->contentElementValue + 86400 - 1; // 23:59
+		return $this->contentElementValue + self::DAY; // midnight
 	}
 
 	/**
 	 * @return bool
 	 */
 	protected function hasOverrideByContentElement() {
+		// @todo constants
 		$record = $this->getDatabaseConnection()->exec_SELECTgetSingleRow('uid, pi_flexform', 'tt_content', 'uid = ' . 2617);
 		if ($record) {
 			$data = GeneralUtility::xml2array($record['pi_flexform']);
