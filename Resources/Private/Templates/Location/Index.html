@@ -19,14 +19,17 @@
 
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
 
-	<location:script file="{f:uri.resource(path:'JavaScript/Maps.js')}"/>
 	<location:script file="{f:uri.resource(path:'JavaScript/Libraries/MarkerClusterer/markerclusterer.min.js')}"/>
+	<location:script file="{f:uri.resource(path:'JavaScript/Libraries/jRespond/jRespond.js')}"/>
+	<location:script file="{f:uri.resource(path:'JavaScript/Build/Bundle.js')}"/>
 	<location:maps>
 		<location:maps.coordinate type="longitude"/>
 		<location:maps.coordinate type="latitude"/>
 		<location:maps.zoom/>
 		<location:maps.toJson objects="{locationTypes}" type="locationType"/>
 	</location:maps>
+
+	<div id="container-mobile"></div>
 
 	<div id="map-container">
 		<div class="btn-full-screen" style="text-align: right">

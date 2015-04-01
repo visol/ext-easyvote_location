@@ -28,6 +28,19 @@ Location types
 - Polling stations (Wahllokal) → UserEditable: TRUE
 
 
+Build assets
+------------
+
+Source is located at `Resources/Public/JavaScript/App/*.js`. Grunt will watch the files and generate as editing the build file into
+`Resources/Public/JavaScript/Build/Bundle.js`. To start watching.
+
+```
+	npm install
+	grunt watch
+
+```
+
+
 Command Line Interface
 ----------------------
 

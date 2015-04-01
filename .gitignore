@@ -1,0 +1,9 @@
+######################
+.sass-cache/*
+node_modules/*
+Temporary/*
+Resources/Public/BowerComponents/*
+
+# Include Bundle.js but not the other
+Resources/Public/JavaScript/Build/*.js
+!Resources/Public/JavaScript/Build/Bundle.js

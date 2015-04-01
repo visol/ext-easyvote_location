@@ -1,0 +1,9 @@
+{
+  "name": "speciality",
+  "version": "1.0.0",
+  "ignore": [],
+  "dependencies": {
+    "jrespond-bower": "~0.10.0",
+    "googlemaps-js-marker-clusterer": "~1.0.0"
+  }
+}

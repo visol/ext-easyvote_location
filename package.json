@@ -1,0 +1,21 @@
+{
+  "name": "babel-runners",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "grunt": "grunt"
+  },
+  "author": "Luís Couto",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt-contrib-watch": "^0.6.1",
+    "babel-core": "^4.7.16",
+    "babel-loader": "^4.2.0",
+    "babel-runtime": "^4.7.16",
+    "browserify": "^9.0.3",
+    "grunt": "^0.4.5",
+    "grunt-babel": "^4.0.0",
+    "grunt-browserify": "^3.6.0",
+    "grunt-cli": "^0.1.13"
+  }
+}
