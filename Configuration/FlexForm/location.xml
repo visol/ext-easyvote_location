@@ -12,7 +12,7 @@
 				<el>
 					<settings.nextVotingDay>
 						<TCEforms>
-							<label>Next voting day. Leave blank to automatically get the next voting day.</label>
+							<label>Override the next voting day. Leave blank to get the automatic value.</label>
 							<config>
 								<type>input</type>
 								<size>8</size>
