@@ -14,7 +14,8 @@ namespace Visol\EasyvoteLocation\DataFormatter;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Visol\EasyvoteLocation\Domain\Model\Location;
 use Visol\EasyvoteLocation\Domain\Model\LocationType;
 
@@ -51,7 +52,9 @@ class LocationFormatter {
 
 		if ((int)$location->getLocationType()->getUid() === LocationType::TYPE_POST_BOX) {
 
-			// @todo dynamic computing of description according to the next voting day
+			$view = $this->getFluidView('PostBox');
+			$view->assign('location', $location);
+			$description = $view->render();
 
 			/*
 			 * Example:
@@ -68,36 +71,41 @@ class LocationFormatter {
 			 *	A-Post: Donnerstag, 26.02.15, 18.00 Uhr
 			 *  Find my way
 			 */
-			$text = <<<EOF
-<strong>%s</strong><br/r>
-%s<br/>
-%s %s<br/>
-<br/>
-%s<br/>
-%s: %s, 25.02.15, %s %s<br/>
-%s: %s, 26.02.15, %s %s<br/>
-<a href="https://www.google.com/maps/dir/Current+Location/%s,%s" target="_blank">%s</a>
-EOF;
+//			$text = <<<EOF
+//<strong>%s</strong><br/r>
+//%s<br/>
+//%s %s<br/>
+//<br/>
+//%s<br/>
+//%s: %s, %s, %s %s<br/>
+//%s: %s, %s, %s %s<br/>
+//<a href="https://www.google.com/maps/dir/Current+Location/%s,%s" target="_blank">%s</a>
+//EOF;
 
-			$description = sprintf(
-				$text,
-				LocalizationUtility::translate('post_box', 'easyvote_location'),
-				$location->getStreet(),
-				$location->getZip(),
-				$location->getCity(),
-				LocalizationUtility::translate('last_emptying', 'easyvote_location'),
-				LocalizationUtility::translate('post_b', 'easyvote_location'),
-				LocalizationUtility::translate('wednesday', 'easyvote_location'),
-				substr($location->getEmptyingTimeDay3(), 0, 5), // time
-				LocalizationUtility::translate('hour', 'easyvote_location'),
-				LocalizationUtility::translate('post_a', 'easyvote_location'),
-				LocalizationUtility::translate('thursday', 'easyvote_location'),
-				substr($location->getEmptyingTimeDay4(), 0, 5), // time
-				LocalizationUtility::translate('hour', 'easyvote_location'),
-				$location->getLatitude(),
-				$location->getLongitude(),
-				LocalizationUtility::translate('find_my_way', 'easyvote_location')
-			);
+//			$description = sprintf(
+//				$text,
+//				LocalizationUtility::translate('post_box', 'easyvote_location'),#
+//				$location->getStreet(),#
+//				$location->getZip(),#
+//				$location->getCity(),#
+//				LocalizationUtility::translate('last_emptying', 'easyvote_location'),#
+//				LocalizationUtility::translate('post_b', 'easyvote_location'),#
+//				LocalizationUtility::translate('wednesday', 'easyvote_location'),#
+//				date('d.m.Y', $this->getVotingDayService()->getTimeLimit() - (4 * Time::DAY)),#
+//				substr($location->getEmptyingTimeDay3(), 0, 5), // time#
+//				LocalizationUtility::translate('hour', 'easyvote_location'),#
+//
+//				LocalizationUtility::translate('post_a', 'easyvote_location'),
+//				LocalizationUtility::translate('thursday', 'easyvote_location'),
+//				date('d.m.Y', $this->getVotingDayService()->getTimeLimit() - (3 * Time::DAY)),
+//				substr($location->getEmptyingTimeDay4(), 0, 5), // time
+//				LocalizationUtility::translate('hour', 'easyvote_location'),
+//				$location->getLatitude(),
+//				$location->getLongitude(),
+//				LocalizationUtility::translate('find_my_way', 'easyvote_location')
+//			);
+
+
 		} elseif ((int)$location->getLocationType()->getUid() === LocationType::TYPE_MUNICIPAL_ADMINISTRATION) {
 			/*
 			 * Example:
@@ -146,4 +154,21 @@ EOF;
 		return $description;
 	}
 
+	/**
+	 * @param string $templateName
+	 * @return \TYPO3\CMS\Fluid\View\StandaloneView
+	 */
+	protected function getFluidView($templateName) {
+
+		$objectManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+
+		/** @var \TYPO3\CMS\Fluid\View\StandaloneView $view */
+		$view = $objectManager->get(\TYPO3\CMS\Fluid\View\StandaloneView::class);
+		$templatePath = sprintf('%sResources/Private/Templates/Standalone/%s.html',
+			ExtensionManagementUtility::extPath('easyvote_location'),
+			$templateName
+		);
+		$view->setTemplatePathAndFilename($templatePath);
+		return $view;
+	}
 }

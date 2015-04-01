@@ -1,0 +1,35 @@
+<div>
+	<strong>
+		<f:translate key="post_box" extensionName="easyvote_location"/>
+	</strong>
+	<br/>
+
+	{location.street}
+	<br/>
+
+	{location.zip} {location.city}
+</div>
+
+<div style="margin-top: 10px;">
+	<f:translate key="last_emptying" extensionName="easyvote_location"/>
+	<br/>
+
+	<f:translate key="post_b" extensionName="easyvote_location"/>:
+	<f:translate key="wednesday" extensionName="easyvote_location"/>,
+	{l:format.postBox.date(dayBack: '5')},
+	{l:format.postBox.emptyingTime(day: '3')}
+	<f:translate key="hour" extensionName="easyvote_location"/>,
+	<br/>
+
+	<f:translate key="post_a" extensionName="easyvote_location"/>:
+	<f:translate key="thursday" extensionName="easyvote_location"/>,
+	{l:format.postBox.date(dayBack: '4')},
+	{l:format.postBox.emptyingTime(day: '4')}
+	<f:translate key="hour" extensionName="easyvote_location"/>,
+	<br/>
+
+	<a href="https://www.google.com/maps/dir/Current+Location/{location.latitude},{location.longitude}" target="_blank">
+		<f:translate key="find_my_way" extensionName="easyvote_location"/>
+	</a>
+</div>
+{namespace l=Visol\EasyvoteLocation\ViewHelpers}

@@ -16,32 +16,14 @@ namespace Visol\EasyvoteLocation\JsonEncoder;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
-use Visol\Easyvote\Domain\Model\VotingDay;
 use Visol\EasyvoteLocation\Domain\Model\LocationType;
+use Visol\EasyvoteLocation\Service\Time;
+use Visol\EasyvoteLocation\Service\VotingDayService;
 
 /**
  * Location Type encoder
  */
 class LocationEncoder implements JsonEncoderInterface {
-
-	const DAY = 86400;
-	const HOUR = 3600;
-	const MINUTE = 60;
-
-	/**
-	 * @var int
-	 */
-	protected $votingLimit;
-
-	/**
-	 * @var VotingDay
-	 */
-	protected $votingDay;
-
-	/**
-	 * @var int
-	 */
-	protected $contentElementValue;
 
 	/**
 	 * Encode to JSON the given objects.
@@ -54,7 +36,6 @@ class LocationEncoder implements JsonEncoderInterface {
 		$collectedObjects = array();
 
 		foreach ($locations as $location) {
-
 			$collectedObjects[] = array(
 				'id' => $location['uid'],
 				'latitude' => $location['latitude'] - 0,
@@ -73,7 +54,7 @@ class LocationEncoder implements JsonEncoderInterface {
 	protected function isActive($location) {
 
 		$isActive = TRUE;
-		$votingLimit = $this->getVotingLimit();
+		$votingLimit = $this->getVotingDayService()->getTimeLimit();
 		$locationType = (int)$location['location_type'];
 
 		if (!$votingLimit) {
@@ -91,14 +72,14 @@ class LocationEncoder implements JsonEncoderInterface {
 	 * @param int $votingLimit
 	 * @return bool
 	 */
-	public function isActiveForPostBox(array $location, $votingLimit) {
+	protected function isActiveForPostBox(array $location, $votingLimit) {
 		$day4 = explode(':', $location['emptying_time_day_4']); // typical value 19:00:00
-		$hour = $day4[0] * self::HOUR;
-		$minute = $day4[1] * self::MINUTE;
-		$day4Time = self::DAY - $hour + $minute; // delta time to be removed between midnight and emptying time.
+		$hour = $day4[0] * Time::HOUR;
+		$minute = $day4[1] * Time::MINUTE;
+		$day4Time = Time::DAY - $hour + $minute; // delta time to be removed between midnight and emptying time.
 
 		// 3 corresponds to 3 days as from Sunday midnight.
-		$votingLimit = $votingLimit - (self::DAY * 3) - $day4Time;
+		$votingLimit = $votingLimit - (Time::DAY * 3) - $day4Time;
 		return $votingLimit > $this->getCurrentTime();
 	}
 
@@ -110,78 +91,10 @@ class LocationEncoder implements JsonEncoderInterface {
 	}
 
 	/**
-	 * @return bool
+	 * @return VotingDayService
 	 */
-	protected function getVotingLimit() {
-		if (is_null($this->votingLimit)) {
-
-			if ($this->hasOverrideByContentElement()) {
-				$this->votingLimit = $this->getVotingLimitFromContentElement();
-			} elseif ($this->hasVotingDay()) {
-				$this->votingLimit = $this->getVotingLimitFromVotingDay();
-			} else {
-				$this->votingLimit = 0;
-			}
-		}
-
-		return $this->votingLimit;
-	}
-
-	/**
-	 * @return bool
-	 */
-	protected function hasVotingDay() {
-		$this->votingDay = $this->getVotingDayRepository()->findNextVotingDay();
-		return !empty($this->votingDay);
-	}
-
-	/**
-	 * @return int
-	 */
-	protected function getVotingLimitFromVotingDay() {
-		return $this->votingDay->getVotingDate()->getTimestamp() + self::DAY; // midnight
-	}
-
-	/**
-	 * @return bool
-	 */
-	protected function getVotingLimitFromContentElement() {
-		return $this->contentElementValue + self::DAY; // midnight
-	}
-
-	/**
-	 * @return bool
-	 */
-	protected function hasOverrideByContentElement() {
-		// @todo constants
-		$record = $this->getDatabaseConnection()->exec_SELECTgetSingleRow('uid, pi_flexform', 'tt_content', 'uid = ' . 2617);
-		if ($record) {
-			$data = GeneralUtility::xml2array($record['pi_flexform']);
-
-			if (!empty($data['data']['sDEF']['lDEF']['settings.nextVotingDay']['vDEF'])) {
-				$this->contentElementValue = (int)$data['data']['sDEF']['lDEF']['settings.nextVotingDay']['vDEF'];
-			}
-		}
-
-		return !is_null($this->contentElementValue);
-	}
-
-	/**
-	 * @return \Visol\Easyvote\Domain\Repository\VotingDayRepository
-	 */
-	protected function getVotingDayRepository() {
-		/** @var \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager */
-		$objectManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
-		return $objectManager->get('Visol\Easyvote\Domain\Repository\VotingDayRepository');
-	}
-
-	/**
-	 * Returns a pointer to the database.
-	 *
-	 * @return \TYPO3\CMS\Core\Database\DatabaseConnection
-	 */
-	protected function getDatabaseConnection() {
-		return $GLOBALS['TYPO3_DB'];
+	protected function getVotingDayService() {
+		return GeneralUtility::makeInstance(VotingDayService::class);
 	}
 
 }
