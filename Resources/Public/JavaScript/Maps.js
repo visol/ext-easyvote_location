@@ -73,13 +73,14 @@ function initialize() {
 }
 
 /**
- * Display
+ * Display a legend
  *
  * @return void
  */
 function addLegend() {
 
-	var legend = document.getElementById('legend');
+	var legend = document.createElement('div');
+	legend.setAttribute('id', 'legend');
 	for (var key in EasyVote.LocationTypes) {
 		var type = EasyVote.LocationTypes[key];
 		var name = type.name;
