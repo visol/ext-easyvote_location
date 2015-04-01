@@ -102,7 +102,7 @@ function addMarkers() {
 	var serializedLocations = sessionStorage.getItem('EasyVote.Locations');
 
 	// If we don't have the points in Session Storage, fetch them by Ajax.
-	if (!serializedLocations) {
+	if (!$.cookie('isDataValid') || !serializedLocations) {
 		$.ajax({
 			url: '/routing/locations',
 			async: true,
@@ -113,6 +113,8 @@ function addMarkers() {
 				sessionStorage.setItem('EasyVote.Locations', JSON.stringify(locations));
 
 				createMarkers(locations);
+
+				$.cookie('isDataValid', 'true', { expires: getCookieLifeTime() });
 			},
 			error: function(xmlHttpRequest, textStatus, errorThrown) {
 				console.log(xmlHttpRequest.toString());
@@ -126,6 +128,35 @@ function addMarkers() {
 		var locations = JSON.parse(serializedLocations);
 		createMarkers(locations);
 	}
+}
+
+/**
+ * Cookie expires every 0, 30 minutes
+ *
+ * @return {Date}
+ */
+function getCookieLifeTime() {
+
+	var date = new Date();
+	var minutes, hours;
+
+	if (date.getMinutes() <= 30) {
+		minutes = 30;
+		hours = date.getHours();
+	} else {
+		minutes = 0;
+		hours = date.getHours() + 1;
+	}
+
+	return new Date(
+		date.getFullYear(),
+		date.getMonth(),
+		date.getDate(),
+		hours,
+		minutes,
+		date.getSeconds()
+	);
+
 }
 
 /**

@@ -57,12 +57,21 @@ class LocationApiController extends ActionController {
 			$response = $this->getLocationEncoder()->encode($locations);
 
 			$tags = array();
-			$lifetime = '600'; // @todo fine a good interval. It could depends on the time of the day.
+			$lifetime = $this->getLifeTime();
 			$this->cacheInstance->set($cacheIdentifier, $response, $tags, $lifetime);
 		}
 
 		$this->response->setHeader('Content-Type', 'application/json');
 		return $response;
+	}
+
+	/**
+	 * Reset cache every 0, 30 minutes.
+	 *
+	 * @return int
+	 */
+	protected function getLifeTime() {
+		return 1800 - time() % 1800;
 	}
 
 	/**

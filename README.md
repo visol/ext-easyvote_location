@@ -3,17 +3,22 @@ EasyVote Location
 
 TYPO3 CMS extension for displaying voting locations on a map.
 
-TODO
-----
-
-* Check if Localization for Location could be avoided.
-
 Features
 --------
 
 * Maps is centered and zoomed to the selected locality if the FE User is authenticated.
 * Icons of the Markers are displayed differently according to the voting possibility (next voting day)
-* A User can search for Voting station given a serch form.
+* A User can search for Voting station given a search form.
+
+Info
+----
+
+* There are two level of caches configured for the Map plugin. On the (1) server side, the cache is configured as "FileBackend"
+  to store the list of voting locations in a JSON file which enables fast delivery of the content.
+  On the (2) client side, the voting locations is stored in the Session storage which means it won't query the server twice once
+  the locations have been loaded.
+* The cache expires at 0,30 minutes for both, server and client.
+
 
 Location types
 --------------
