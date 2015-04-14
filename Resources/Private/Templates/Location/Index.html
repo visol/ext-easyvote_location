@@ -15,9 +15,34 @@
 			background: white;
 			padding: 10px;
 		}
+
+		.maps-infoBox {
+			background: #0E6CA3;
+			padding: 10px;
+			color: white;
+			font-size: 130%;
+			border-radius: 5px;
+		}
+
+		.maps-infoBox:after,
+		.maps-infoBox:after {
+			z-index: -1;
+			position: absolute;
+			top: 98.1%;
+			left: 70%;
+			margin-left: -25%;
+			content: '';
+			width: 0;
+			height: 0;
+			border-top: solid 15px #0E6CA3;
+			border-left: solid 15px transparent;
+			border-right: solid 15px transparent;
+		}
+
 	</style>
 
-	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.13/src/infobox_packed.js"></script>
 
 	<location:script file="{f:uri.resource(path:'JavaScript/Libraries/MarkerClusterer/markerclusterer.min.js')}"/>
 	<location:script file="{f:uri.resource(path:'JavaScript/Libraries/jRespond/jRespond.js')}"/>
@@ -32,6 +57,7 @@
 	<div id="container-mobile"></div>
 
 	<div id="map-container">
+		<div id="map-canvas"></div>
 		<div class="btn-full-screen" style="text-align: right">
 			<a href="#" id="btn-enter-full-screen">
 				<f:translate key="enter-full-screen"/>
@@ -40,15 +66,8 @@
 				<f:translate key="exit-full-screen"/>
 			</a>
 		</div>
-		<div id="map-canvas"></div>
 	</div>
 
-	<style>
-		/* Styling of the bubble in the Google Map */
-		.gm-style-iw {
-			font-family: "Univers LT W01 45 Light", Arial, Helvetica, sans-serif !important;
-		}
-	</style>
 </f:section>
 
 </html>

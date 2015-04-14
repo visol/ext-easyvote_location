@@ -157,6 +157,7 @@ var Maps = (function () {
 	function Maps() {
 		_classCallCheck(this, Maps);
 
+		this.infoWindowReference = null;
 		this.map = new google.maps.Map(document.getElementById("map-canvas"), {
 			zoom: EasyVote.Zoom,
 			center: new google.maps.LatLng(EasyVote.Latitude, EasyVote.Longitude),
@@ -316,23 +317,37 @@ var Maps = (function () {
 					//map: map
 				});
 
-				var infoWindow = new google.maps.InfoWindow({
-					content: "<img src=\"/typo3conf/ext/easyvote_location/Resources/Public/Icons/loading.gif\" alt=\"\" />"
+				var boxWidth = 300;
+				var loading = "<img src=\"/typo3conf/ext/easyvote_location/Resources/Public/Icons/loading.gif\" alt=\"\" />";
+				var infoBox = new InfoBox({
+					content: "<div class=\"maps-infoBox\" style=\"text-align: center\">" + loading + "</div>",
+					pixelOffset: new google.maps.Size(boxWidth / 2 * -1, -40),
+					alignBottom: true,
+					boxStyle: {
+						width: boxWidth + "px"
+					},
+					closeBoxMargin: "5px",
+					closeBoxURL: "/typo3conf/ext/easyvote_location/Resources/Public/Icons/close.png",
+					infoBoxClearance: new google.maps.Size(50, 250),
+					enableEventPropagation: false
 				});
 
 				google.maps.event.addListener(marker, "click", function () {
-					infoWindow.open(this.map, marker);
 
-					// Center the map around the bubble.
-					var position = marker.getPosition();
-					position.k = position.k + 0.001;
-					this.map.setCenter(position);
-					var isMissingContent = infoWindow.getContent().match("loading.gif");
+					// close previous opened info window
+					if (Maps.getInstance().getInfoWindowReference()) {
+						Maps.getInstance().getInfoWindowReference().close();
+					}
+					Maps.getInstance().setInfoWindowReference(infoBox);
+
+					infoBox.open(this.map, this);
+					var isMissingContent = infoBox.getContent().match("loading.gif");
 					if (isMissingContent) {
 						$.ajax({
 							url: "/routing/locations/" + marker.id,
 							success: function success(location) {
-								infoWindow.setContent(location.description);
+								var content = "<div class=\"maps-infoBox\">" + location.description + "</div>";
+								infoBox.setContent(content);
 							}
 						});
 					}
@@ -362,8 +377,9 @@ var Maps = (function () {
 						backgroundColor: "white"
 					});
 
+					// give enough room for full screen exit
 					$("#map-canvas").css({
-						height: "100%"
+						height: $(window).height() - 25 + "px"
 					});
 
 					google.maps.event.trigger(Maps.getInstance().getMap(), "resize");
@@ -404,6 +420,26 @@ var Maps = (function () {
 
 			value: function getMap() {
 				return this.map;
+			}
+		},
+		getInfoWindowReference: {
+
+			/**
+    * @returns InfoBox
+    */
+
+			value: function getInfoWindowReference() {
+				return this.infoWindowReference;
+			}
+		},
+		setInfoWindowReference: {
+
+			/**
+    * @param {InfoBox} infoWindowReference
+    */
+
+			value: function setInfoWindowReference(infoWindowReference) {
+				this.infoWindowReference = infoWindowReference;
 			}
 		}
 	}, {

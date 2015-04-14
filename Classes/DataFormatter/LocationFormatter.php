@@ -47,65 +47,13 @@ class LocationFormatter {
 	 * @param Location $location
 	 * @return string
 	 */
-	public function formatDescription(Location $location) {
+	protected function formatDescription(Location $location) {
 		$description = '';
 
 		if ((int)$location->getLocationType()->getUid() === LocationType::TYPE_POST_BOX) {
-
 			$view = $this->getFluidView('PostBox');
 			$view->assign('location', $location);
 			$description = $view->render();
-
-			/*
-			 * Example:
-			 * ---------
-			 *
-			 *  A-/B-Post möglich/ A-Post möglich/ Stimmabgabe geschlossen
-			 *
-			 *	Briefeinwurf
-			 *	Ruhestrasse 2
-			 *	8045 Zürich
-			 *
-			 *	Letzte Leerung
-			 *	B-Post: Mittwoch, 25.02.15, 18.00 Uhr
-			 *	A-Post: Donnerstag, 26.02.15, 18.00 Uhr
-			 *  Find my way
-			 */
-//			$text = <<<EOF
-//<strong>%s</strong><br/r>
-//%s<br/>
-//%s %s<br/>
-//<br/>
-//%s<br/>
-//%s: %s, %s, %s %s<br/>
-//%s: %s, %s, %s %s<br/>
-//<a href="https://www.google.com/maps/dir/Current+Location/%s,%s" target="_blank">%s</a>
-//EOF;
-
-//			$description = sprintf(
-//				$text,
-//				LocalizationUtility::translate('post_box', 'easyvote_location'),#
-//				$location->getStreet(),#
-//				$location->getZip(),#
-//				$location->getCity(),#
-//				LocalizationUtility::translate('last_emptying', 'easyvote_location'),#
-//				LocalizationUtility::translate('post_b', 'easyvote_location'),#
-//				LocalizationUtility::translate('wednesday', 'easyvote_location'),#
-//				date('d.m.Y', $this->getVotingDayService()->getTimeLimit() - (4 * Time::DAY)),#
-//				substr($location->getEmptyingTimeDay3(), 0, 5), // time#
-//				LocalizationUtility::translate('hour', 'easyvote_location'),#
-//
-//				LocalizationUtility::translate('post_a', 'easyvote_location'),
-//				LocalizationUtility::translate('thursday', 'easyvote_location'),
-//				date('d.m.Y', $this->getVotingDayService()->getTimeLimit() - (3 * Time::DAY)),
-//				substr($location->getEmptyingTimeDay4(), 0, 5), // time
-//				LocalizationUtility::translate('hour', 'easyvote_location'),
-//				$location->getLatitude(),
-//				$location->getLongitude(),
-//				LocalizationUtility::translate('find_my_way', 'easyvote_location')
-//			);
-
-
 		} elseif ((int)$location->getLocationType()->getUid() === LocationType::TYPE_MUNICIPAL_ADMINISTRATION) {
 			/*
 			 * Example:

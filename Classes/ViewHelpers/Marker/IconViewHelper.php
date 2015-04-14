@@ -1,5 +1,5 @@
 <?php
-namespace Visol\EasyvoteLocation\ViewHelpers\Format\PostBox;
+namespace Visol\EasyvoteLocation\ViewHelpers\Marker;
 
 /**
  * This file is part of the TYPO3 CMS project.
@@ -14,21 +14,27 @@ namespace Visol\EasyvoteLocation\ViewHelpers\Format\PostBox;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use Visol\EasyvoteLocation\Domain\Model\Location;
 
 /**
- * View helper which render a limit date for a post box
+ * View helper for encoding a set of objects to JSON.
  */
-class EmptyingTimeViewHelper extends AbstractViewHelper {
+class IconViewHelper extends AbstractViewHelper {
 
 	/**
-	 * @param int $day
 	 * @return string
 	 */
-	public function render($day) {
+	public function render() {
+
+		/** @var Location $location */
 		$location = $this->templateVariableContainer->get('location');
-		$getter = 'getEmptyingTimeDay' . $day;
-		return substr($location->$getter(), 0, 5); // time
+		$extensionPath = ExtensionManagementUtility::siteRelPath('easyvote_location');
+		return sprintf('%sResources/Public/Icons/PostBox%s.png',
+			$extensionPath,
+			$location->getIsActive() ? '' : 'Gray'
+		);
 	}
 
 }

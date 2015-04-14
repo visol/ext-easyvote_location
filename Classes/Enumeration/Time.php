@@ -1,5 +1,5 @@
 <?php
-namespace Visol\EasyvoteLocation\Service;
+namespace Visol\EasyvoteLocation\Enumeration;
 
 /**
  * This file is part of the TYPO3 CMS project.

@@ -17,6 +17,7 @@ namespace Visol\EasyvoteLocation\Service;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Visol\Easyvote\Domain\Model\VotingDay;
+use Visol\EasyvoteLocation\Enumeration\Time;
 
 /**
  * Service related to the User.
@@ -82,7 +83,6 @@ class VotingDayService implements SingletonInterface {
 	 * @return bool
 	 */
 	protected function hasOverrideByContentElement() {
-		// @todo constants
 
 		$settings = $this->getSettings();
 		$record = $this->getDatabaseConnection()->exec_SELECTgetSingleRow('uid, pi_flexform', 'tt_content', 'uid = ' . $settings['content_element_map_uid']);

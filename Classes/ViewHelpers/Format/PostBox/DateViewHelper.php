@@ -16,7 +16,7 @@ namespace Visol\EasyvoteLocation\ViewHelpers\Format\PostBox;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-use Visol\EasyvoteLocation\Service\Time;
+use Visol\EasyvoteLocation\Enumeration\Time;
 use Visol\EasyvoteLocation\Service\VotingDayService;
 
 /**

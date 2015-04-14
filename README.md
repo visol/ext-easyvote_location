@@ -37,7 +37,6 @@ Source is located at `Resources/Public/JavaScript/App/*.js`. Grunt will watch th
 ```
 	npm install
 	grunt watch
-
 ```
 
 

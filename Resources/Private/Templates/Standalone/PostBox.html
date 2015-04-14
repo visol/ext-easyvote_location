@@ -1,4 +1,17 @@
 <div>
+	<f:image src="{l:marker.icon()}"/>
+	<strong style="padding-left: 5px;">
+		<f:if condition="{location.isActive}">
+			<f:then>
+				<f:translate key="opened" extensionName="easyvote_location"/>
+			</f:then>
+			<f:else>
+				<f:translate key="closed" extensionName="easyvote_location"/>
+			</f:else>
+		</f:if>
+	</strong>
+</div>
+<div style="margin-top: 10px;">
 	<strong>
 		<f:translate key="post_box" extensionName="easyvote_location"/>
 	</strong>
@@ -10,25 +23,31 @@
 	{location.zip} {location.city}
 </div>
 
+<f:if condition="{location.isActive}">
+	<div style="margin-top: 10px;">
+		<f:translate key="last_emptying" extensionName="easyvote_location"/>
+		<br/>
+
+		<f:if condition="{location.isPostBActive}">
+			<f:translate key="post_b" extensionName="easyvote_location"/>:
+			<f:translate key="wednesday" extensionName="easyvote_location"/>,
+			{l:format.postBox.date(dayBack: '5')},
+			{l:format.postBox.emptyingTime(day: '3')}
+			<f:translate key="hour" extensionName="easyvote_location"/>
+			<br/>
+		</f:if>
+
+		<f:translate key="post_a" extensionName="easyvote_location"/>:
+		<f:translate key="thursday" extensionName="easyvote_location"/>,
+		{l:format.postBox.date(dayBack: '4')},
+		{l:format.postBox.emptyingTime(day: '4')}
+		<f:translate key="hour" extensionName="easyvote_location"/>
+
+	</div>
+</f:if>
+
 <div style="margin-top: 10px;">
-	<f:translate key="last_emptying" extensionName="easyvote_location"/>
-	<br/>
-
-	<f:translate key="post_b" extensionName="easyvote_location"/>:
-	<f:translate key="wednesday" extensionName="easyvote_location"/>,
-	{l:format.postBox.date(dayBack: '5')},
-	{l:format.postBox.emptyingTime(day: '3')}
-	<f:translate key="hour" extensionName="easyvote_location"/>,
-	<br/>
-
-	<f:translate key="post_a" extensionName="easyvote_location"/>:
-	<f:translate key="thursday" extensionName="easyvote_location"/>,
-	{l:format.postBox.date(dayBack: '4')},
-	{l:format.postBox.emptyingTime(day: '4')}
-	<f:translate key="hour" extensionName="easyvote_location"/>,
-	<br/>
-
-	<a href="https://www.google.com/maps/dir/Current+Location/{location.latitude},{location.longitude}" target="_blank">
+	<a class="btn btn-primary btn-sm" href="https://www.google.com/maps/dir/Current+Location/{location.latitude},{location.longitude}" target="_blank">
 		<f:translate key="find_my_way" extensionName="easyvote_location"/>
 	</a>
 </div>

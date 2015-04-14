@@ -15,7 +15,6 @@ CREATE TABLE tx_easyvotelocation_domain_model_location (
 	creator varchar(255) DEFAULT '' NOT NULL,
 	last_updater varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
-	is_available_for_current_voting_day varchar(255) DEFAULT '' NOT NULL,
 	photo int(11) unsigned NOT NULL default '0',
 
 	street varchar(255) DEFAULT '' NOT NULL,

@@ -14,6 +14,7 @@ namespace Visol\EasyvoteLocation\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
@@ -62,9 +63,16 @@ class Location extends AbstractEntity {
 	protected $description = '';
 
 	/**
-	 * @var string
+	 * @var boolean
+	 * @transient
 	 */
-	protected $isAvailableForCurrentVotingDay = '';
+	protected $isActive;
+
+	/**
+	 * @var boolean
+	 * @transient
+	 */
+	protected $isPostBActive;
 
 	/**
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
@@ -274,22 +282,23 @@ class Location extends AbstractEntity {
 	}
 
 	/**
-	 * Returns the isAvailableForCurrentVotingDay
-	 *
-	 * @return string $isAvailableForCurrentVotingDay
+	 * @return string $isActive
 	 */
-	public function getIsAvailableForCurrentVotingDay() {
-		return $this->isAvailableForCurrentVotingDay;
+	public function getIsActive() {
+		if (is_null($this->isActive)) {
+			$this->isActive = $this->getLocationService()->isActive();
+		}
+		return $this->isActive;
 	}
 
 	/**
-	 * Sets the isAvailableForCurrentVotingDay
-	 *
-	 * @param string $isAvailableForCurrentVotingDay
-	 * @return void
+	 * @return string $isActive
 	 */
-	public function setIsAvailableForCurrentVotingDay($isAvailableForCurrentVotingDay) {
-		$this->isAvailableForCurrentVotingDay = $isAvailableForCurrentVotingDay;
+	public function getIsPostBActive() {
+		if (is_null($this->isPostBActive)) {
+			$this->isPostBActive = $this->getLocationService()->isPostBActive();
+		}
+		return $this->isPostBActive;
 	}
 
 	/**
@@ -472,6 +481,39 @@ class Location extends AbstractEntity {
 	public function setEmptyingTimeDay7($emptyingTimeDay7) {
 		$this->emptyingTimeDay7 = $emptyingTimeDay7;
 		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function toArray() {
+		return array(
+			'uid' => $this->getUid(),
+			'pid' => $this->getPid(),
+			'name' => $this->getName(),
+			'longitude' => $this->getLongitude(),
+			'latitude' => $this->getLatitude(),
+			'city' => $this->getCity(),
+			'description' => $this->getDescription(),
+			'location_type' => $this->getLocationType(),
+			'photo' => '',
+			'street' => $this->getStreet(),
+			'zip' => $this->getZip(),
+			'emptying_time_day_1' => $this->getEmptyingTimeDay1(),
+			'emptying_time_day_2' => $this->getEmptyingTimeDay2(),
+			'emptying_time_day_3' => $this->getEmptyingTimeDay3(),
+			'emptying_time_day_4' => $this->getEmptyingTimeDay4(),
+			'emptying_time_day_5' => $this->getEmptyingTimeDay5(),
+			'emptying_time_day_6' => $this->getEmptyingTimeDay6(),
+			'emptying_time_day_7' => $this->getEmptyingTimeDay7(),
+		);
+	}
+
+	/**
+	 * @return \Visol\EasyvoteLocation\Service\LocationService
+	 */
+	protected function getLocationService() {
+		return GeneralUtility::makeInstance('Visol\EasyvoteLocation\Service\LocationService', $this);
 	}
 
 }

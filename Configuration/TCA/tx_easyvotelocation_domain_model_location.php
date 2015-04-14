@@ -18,13 +18,12 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 		'delete' => 'deleted',
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
-
 		),
-		'searchFields' => 'name,address,longitude,latitude,city,creator,last_updater,description,is_available_for_current_voting_day,photo,location_type,',
+		'searchFields' => 'name,address,longitude,latitude,city,creator,last_updater,description,photo,location_type,',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('easyvote_location') . 'Resources/Public/Icons/tx_easyvotelocation_domain_model_location.gif'
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, address, longitude, latitude, city, creator, last_updater, description, is_available_for_current_voting_day, photo, location_type, '),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, address, longitude, latitude, city, creator, last_updater, description, photo, location_type, '),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -143,15 +142,6 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 				'rows' => 15,
 				'eval' => 'trim'
 			)
-		),
-		'is_available_for_current_voting_day' => array(
-			'exclude' => 1,
-			'label' => 'LLL:EXT:easyvote_location/Resources/Private/Language/locallang_db.xlf:tx_easyvotelocation_domain_model_location.is_available_for_current_voting_day',
-			'config' => array(
-				'type' => 'input',
-				'size' => 30,
-				'eval' => 'trim'
-			),
 		),
 		'photo' => array(
 			'exclude' => 1,

@@ -16,9 +16,6 @@ namespace Visol\EasyvoteLocation\JsonEncoder;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
-use Visol\EasyvoteLocation\Domain\Model\LocationType;
-use Visol\EasyvoteLocation\Service\Time;
-use Visol\EasyvoteLocation\Service\VotingDayService;
 
 /**
  * Location Type encoder
@@ -41,7 +38,7 @@ class LocationEncoder implements JsonEncoderInterface {
 				'latitude' => $location['latitude'] - 0,
 				'longitude' => $location['longitude'] - 0,
 				'type' => (int)$location['location_type'],
-				'active' => $this->isActive($location),
+				'active' => $this->getLocationService($location)->isActive(),
 			);
 		}
 		return json_encode($collectedObjects);
@@ -49,52 +46,9 @@ class LocationEncoder implements JsonEncoderInterface {
 
 	/**
 	 * @param array $location
-	 * @return bool
+	 * @return \Visol\EasyvoteLocation\Service\LocationService
 	 */
-	protected function isActive($location) {
-
-		$isActive = TRUE;
-		$votingLimit = $this->getVotingDayService()->getTimeLimit();
-		$locationType = (int)$location['location_type'];
-
-		if (!$votingLimit) {
-			$isActive = FALSE;
-		} elseif ($locationType === LocationType::TYPE_POST_BOX) {
-			$isActive = $this->isActiveForPostBox($location, $votingLimit);
-		} else {
-			// @todo
-		}
-		return $isActive;
+	public function getLocationService(array $location){
+		return GeneralUtility::makeInstance('Visol\EasyvoteLocation\Service\LocationService', $location);
 	}
-
-	/**
-	 * @param array $location
-	 * @param int $votingLimit
-	 * @return bool
-	 */
-	protected function isActiveForPostBox(array $location, $votingLimit) {
-		$day4 = explode(':', $location['emptying_time_day_4']); // typical value 19:00:00
-		$hour = $day4[0] * Time::HOUR;
-		$minute = $day4[1] * Time::MINUTE;
-		$day4Time = Time::DAY - $hour + $minute; // delta time to be removed between midnight and emptying time.
-
-		// 3 corresponds to 3 days as from Sunday midnight.
-		$votingLimit = $votingLimit - (Time::DAY * 3) - $day4Time;
-		return $votingLimit > $this->getCurrentTime();
-	}
-
-	/**
-	 * @return int
-	 */
-	protected function getCurrentTime() {
-		return time();
-	}
-
-	/**
-	 * @return VotingDayService
-	 */
-	protected function getVotingDayService() {
-		return GeneralUtility::makeInstance(VotingDayService::class);
-	}
-
 }

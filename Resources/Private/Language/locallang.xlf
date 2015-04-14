@@ -106,6 +106,13 @@
 			<trans-unit id="exit-full-screen">
 				<source>Vollbild-Modus verlassen</source>
 			</trans-unit>
+
+			<trans-unit id="opened">
+				<source>Geöffnet</source>
+			</trans-unit>
+			<trans-unit id="closed">
+				<source>Geschlossen</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

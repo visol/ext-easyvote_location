@@ -8,7 +8,6 @@ if (!defined('TYPO3_MODE')) {
 	'Pi1',
 	array(
 		'Location' => 'index',
-
 	),
 	// non-cacheable actions
 	array(
