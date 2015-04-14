@@ -170,6 +170,7 @@ class Maps {
 			content: `<div class="maps-infoBox" style="text-align: center">${loading}</div>`,
 			pixelOffset: new google.maps.Size(boxWidth / 2 * -1, -40),
 			alignBottom: true,
+			disableAutoPan: true,
 			boxStyle: {
 				width: boxWidth + 'px'
 			},
@@ -188,6 +189,15 @@ class Maps {
 			Maps.getInstance().setInfoWindowReference(infoBox);
 
 			infoBox.open(this.map, this);
+
+			let markerPixel = infoBox.getProjection().fromLatLngToContainerPixel(infoBox.getPosition());
+			let centerPixel = infoBox.getProjection().fromLatLngToContainerPixel(this.map.getCenter());
+
+			let correction = 150; // correction so that the bubble is displayed in the map
+			let moveX = (centerPixel.x - markerPixel.x) * -1;
+			let moveY = (centerPixel.y - markerPixel.y) * -1 - correction;
+			this.map.panBy(moveX, moveY);
+
 			var isMissingContent = infoBox.getContent().match('loading.gif');
 			if (isMissingContent) {
 				$.ajax({
@@ -210,6 +220,7 @@ class Maps {
 		// Save with and height for full screen mode
 		var googleMapWidth = $("#map-container").css("width");
 		var googleMapHeight = $("#map-container").css("height");
+		var canvasHeight = $("#map-canvas").css("height");
 
 		$("#btn-enter-full-screen").click(function() {
 			$("#map-container").css({
@@ -226,27 +237,31 @@ class Maps {
 				height: $(window).height() - 25 + 'px'
 			});
 
-			google.maps.event.trigger(Maps.getInstance().getMap(), "resize");
+			google.maps.event.trigger(Maps.getInstance().getMap(), 'resize');
 
 			// Gui
-			$("#sitefooter").hide();
-			$("#btn-enter-full-screen").toggle();
-			$("#btn-exit-full-screen").toggle();
+			$('#sitefooter').hide();
+			$('#btn-enter-full-screen').toggle();
+			$('#btn-exit-full-screen').toggle();
 			return false;
 		});
 
-		$("#btn-exit-full-screen").click(function() {
+		$('#btn-exit-full-screen').click(function() {
 
-			$("#map-container").css({
-				position: "relative",
+			$('#map-container').css({
+				position: 'relative',
 				top: 0,
 				//left: 0,
 				width: googleMapWidth,
 				height: googleMapHeight,
-				backgroundColor: "transparent"
+				backgroundColor: 'transparent'
 			});
 
-			google.maps.event.trigger(Maps.getInstance().getMap(), "resize");
+			$("#map-canvas").css({
+				height: canvasHeight
+			});
+
+			google.maps.event.trigger(Maps.getInstance().getMap(), 'resize');
 
 			// Gui
 			$("#sitefooter").show();

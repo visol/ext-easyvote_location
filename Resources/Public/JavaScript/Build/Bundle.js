@@ -323,6 +323,7 @@ var Maps = (function () {
 					content: "<div class=\"maps-infoBox\" style=\"text-align: center\">" + loading + "</div>",
 					pixelOffset: new google.maps.Size(boxWidth / 2 * -1, -40),
 					alignBottom: true,
+					disableAutoPan: true,
 					boxStyle: {
 						width: boxWidth + "px"
 					},
@@ -341,6 +342,15 @@ var Maps = (function () {
 					Maps.getInstance().setInfoWindowReference(infoBox);
 
 					infoBox.open(this.map, this);
+
+					var markerPixel = infoBox.getProjection().fromLatLngToContainerPixel(infoBox.getPosition());
+					var centerPixel = infoBox.getProjection().fromLatLngToContainerPixel(this.map.getCenter());
+
+					var correction = 150; // correction so that the bubble is displayed in the map
+					var moveX = (centerPixel.x - markerPixel.x) * -1;
+					var moveY = (centerPixel.y - markerPixel.y) * -1 - correction;
+					this.map.panBy(moveX, moveY);
+
 					var isMissingContent = infoBox.getContent().match("loading.gif");
 					if (isMissingContent) {
 						$.ajax({
@@ -366,6 +376,7 @@ var Maps = (function () {
 				// Save with and height for full screen mode
 				var googleMapWidth = $("#map-container").css("width");
 				var googleMapHeight = $("#map-container").css("height");
+				var canvasHeight = $("#map-canvas").css("height");
 
 				$("#btn-enter-full-screen").click(function () {
 					$("#map-container").css({
@@ -400,6 +411,10 @@ var Maps = (function () {
 						width: googleMapWidth,
 						height: googleMapHeight,
 						backgroundColor: "transparent"
+					});
+
+					$("#map-canvas").css({
+						height: canvasHeight
 					});
 
 					google.maps.event.trigger(Maps.getInstance().getMap(), "resize");
