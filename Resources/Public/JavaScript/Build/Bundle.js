@@ -328,7 +328,7 @@ var Maps = (function () {
 						width: boxWidth + "px"
 					},
 					closeBoxMargin: "5px",
-					closeBoxURL: "/typo3conf/ext/easyvote_location/Resources/Public/Icons/close.png",
+					closeBoxURL: "/typo3conf/ext/easyvote_location/Resources/Public/Icons/Close.png",
 					infoBoxClearance: new google.maps.Size(50, 250),
 					enableEventPropagation: false
 				});
