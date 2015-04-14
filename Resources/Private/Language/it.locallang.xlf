@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-02-23T14:33:51Z" product-name="easyvote_location">
+		<header/>
+		<body>
+
+			<trans-unit id="post_box">
+				<source>Briefeinwurf</source>
+			</trans-unit>
+			<trans-unit id="last_emptying">
+				<source>Letzte Leerung</source>
+			</trans-unit>
+			<trans-unit id="hour">
+				<source>Uhr</source>
+			</trans-unit>
+			<trans-unit id="monday">
+				<source>Montag</source>
+			</trans-unit>
+			<trans-unit id="tuesday">
+				<source>Dienstag</source>
+			</trans-unit>
+			<trans-unit id="wednesday">
+				<source>Mittwoch</source>
+			</trans-unit>
+			<trans-unit id="thursday">
+				<source>Donnerstag</source>
+			</trans-unit>
+			<trans-unit id="friday">
+				<source>Freitag</source>
+			</trans-unit>
+			<trans-unit id="saturday">
+				<source>Samstag</source>
+			</trans-unit>
+			<trans-unit id="sunday">
+				<source>Sontag</source>
+			</trans-unit>
+			<trans-unit id="post_a">
+				<source>A-Post</source>
+			</trans-unit>
+			<trans-unit id="post_b">
+				<source>B-Post</source>
+			</trans-unit>
+			<trans-unit id="find_my_way">
+				<source>Find my way</source>
+			</trans-unit>
+			<trans-unit id="search">
+				<source>Suche</source>
+			</trans-unit>
+			<trans-unit id="placeholder_postal_code">
+				<source>PLZ eingeben...</source>
+			</trans-unit>
+			<trans-unit id="enter-full-screen">
+				<source>Vollbild-Modus</source>
+			</trans-unit>
+			<trans-unit id="exit-full-screen">
+				<source>Vollbild-Modus verlassen</source>
+			</trans-unit>
+
+			<trans-unit id="opened">
+				<source>Geöffnet</source>
+			</trans-unit>
+			<trans-unit id="closed">
+				<source>Geschlossen</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

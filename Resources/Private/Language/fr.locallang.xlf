@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-02-23T14:33:51Z" product-name="easyvote_location">
+		<header/>
+		<body>
+
+			<trans-unit id="post_box">
+				<target>Boîte postale</target>
+			</trans-unit>
+			<trans-unit id="last_emptying">
+				<target>Dernière levée</target>
+			</trans-unit>
+			<trans-unit id="hour">
+				<target>heure</target>
+			</trans-unit>
+			<trans-unit id="monday">
+				<target>Lundi</target>
+			</trans-unit>
+			<trans-unit id="tuesday">
+				<target>Mardi</target>
+			</trans-unit>
+			<trans-unit id="wednesday">
+				<target>Mercredi</target>
+			</trans-unit>
+			<trans-unit id="thursday">
+				<target>Jeudi</target>
+			</trans-unit>
+			<trans-unit id="friday">
+				<target>Vendredi</target>
+			</trans-unit>
+			<trans-unit id="saturday">
+				<target>Samedi</target>
+			</trans-unit>
+			<trans-unit id="sunday">
+				<target>Dimanche</target>
+			</trans-unit>
+			<trans-unit id="post_a">
+				<target>Courrier A</target>
+			</trans-unit>
+			<trans-unit id="post_b">
+				<target>Courrier B</target>
+			</trans-unit>
+			<trans-unit id="find_my_way">
+				<target>Trouver ma route</target>
+			</trans-unit>
+			<trans-unit id="search">
+				<target>Chercher</target>
+			</trans-unit>
+			<trans-unit id="placeholder_postal_code">
+				<target>Numéro postal...</target>
+			</trans-unit>
+			<trans-unit id="enter-full-screen">
+				<target>Plein écran</target>
+			</trans-unit>
+			<trans-unit id="exit-full-screen">
+				<target>Quitter plein écran</target>
+			</trans-unit>
+
+			<trans-unit id="opened">
+				<target>Ouvert</target>
+			</trans-unit>
+			<trans-unit id="closed">
+				<target>Fermé</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

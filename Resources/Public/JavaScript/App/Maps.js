@@ -201,7 +201,7 @@ class Maps {
 			var isMissingContent = infoBox.getContent().match('loading.gif');
 			if (isMissingContent) {
 				$.ajax({
-					url: "/routing/locations/" + marker.id,
+					url: '/routing/locations/' + marker.id + '?L=' + EasyVote.Language,
 					success: function success(location) {
 						var content = `<div class="maps-infoBox">${location.description}</div>`;
 						infoBox.setContent(content);

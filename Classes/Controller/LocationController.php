@@ -40,6 +40,7 @@ class LocationController extends ActionController {
 		$locations = $this->locationRepository->findAll();
 		$locationTypes = $this->locationTypeRepository->findAll();
 
+		$this->view->assign('language', $this->getFrontendObject()->sys_language_uid);
 		$this->view->assign('locations', $locations);
 		$this->view->assign('locationTypes', $locationTypes);
 	}
