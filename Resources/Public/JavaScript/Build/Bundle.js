@@ -551,34 +551,31 @@ var SearchForm =
 function SearchForm() {
 	_classCallCheck(this, SearchForm);
 
-	if (typeof postalCodeServiceUrl === "string") {
-		var $postalCodeSelector = $(".communityUser-citySelection");
-		$postalCodeSelector.select2({
-			placeholder: EasyVote.PlaceholderPostalCode,
-			minimumInputLength: 2,
-			ajax: {
-				url: postalCodeServiceUrl,
-				dataType: "json",
-				data: function data(term, page) {
-					return {
-						q: term // search term
-					};
-				},
-				results: function results(data, page) {
-					return { results: data.results };
-				}
+	$(".communityUser-citySelection").select2({
+		placeholder: EasyvoteLabels.enterZipOrCity,
+		minimumInputLength: 2,
+		ajax: {
+			url: "/?eID=easyvote_cityselection",
+			dataType: "json",
+			data: function data(term, page) {
+				return {
+					q: term // search term
+				};
 			},
-			initSelection: function initSelection(element, callback) {},
-			dropdownCssClass: "bigdrop",
-			escapeMarkup: function escapeMarkup(m) {
-				return m;
+			results: function results(data, page) {
+				return { results: data.results };
 			}
-		}).on("change", function (e) {
-			var data = $(this).select2("data");
-			Maps.getInstance().getMap().setCenter(new google.maps.LatLng(data.latitude, data.longitude));
-			Maps.getInstance().getMap().setZoom(14);
-		});
-	}
+		},
+		initSelection: function initSelection(element, callback) {},
+		dropdownCssClass: "bigdrop",
+		escapeMarkup: function escapeMarkup(m) {
+			return m;
+		}
+	}).on("change", function (e) {
+		var data = $(this).select2("data");
+		Maps.getInstance().getMap().setCenter(new google.maps.LatLng(data.latitude, data.longitude));
+		Maps.getInstance().getMap().setZoom(14);
+	});
 };
 
 module.exports = SearchForm;
