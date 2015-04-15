@@ -5,62 +5,62 @@
 		<body>
 
 			<trans-unit id="post_box">
-				<source>Briefeinwurf</source>
+				<target>Casella postale</target>
 			</trans-unit>
 			<trans-unit id="last_emptying">
-				<source>Letzte Leerung</source>
+				<target>Ultima collezione</target>
 			</trans-unit>
 			<trans-unit id="hour">
-				<source>Uhr</source>
+				<target>ore</target>
 			</trans-unit>
 			<trans-unit id="monday">
-				<source>Montag</source>
+				<target>Lunedi</target>
 			</trans-unit>
 			<trans-unit id="tuesday">
-				<source>Dienstag</source>
+				<target>Martedì</target>
 			</trans-unit>
 			<trans-unit id="wednesday">
-				<source>Mittwoch</source>
+				<target>Mercoledì</target>
 			</trans-unit>
 			<trans-unit id="thursday">
-				<source>Donnerstag</source>
+				<target>Giovedi</target>
 			</trans-unit>
 			<trans-unit id="friday">
-				<source>Freitag</source>
+				<target>Venerdì</target>
 			</trans-unit>
 			<trans-unit id="saturday">
-				<source>Samstag</source>
+				<target>Sabato</target>
 			</trans-unit>
 			<trans-unit id="sunday">
-				<source>Sontag</source>
+				<target>Domenica</target>
 			</trans-unit>
 			<trans-unit id="post_a">
-				<source>A-Post</source>
+				<target>Posta A</target>
 			</trans-unit>
 			<trans-unit id="post_b">
-				<source>B-Post</source>
+				<target>Posta B</target>
 			</trans-unit>
 			<trans-unit id="find_my_way">
-				<source>Find my way</source>
+				<target>Trovare la sua strada</target>
 			</trans-unit>
 			<trans-unit id="search">
-				<source>Suche</source>
+				<target>Cercare</target>
 			</trans-unit>
 			<trans-unit id="placeholder_postal_code">
-				<source>PLZ eingeben...</source>
+				<target>PLZ eingeben...</target>
 			</trans-unit>
 			<trans-unit id="enter-full-screen">
-				<source>Vollbild-Modus</source>
+				<target>Schermo intero</target>
 			</trans-unit>
 			<trans-unit id="exit-full-screen">
-				<source>Vollbild-Modus verlassen</source>
+				<target>Uscita schermo intero</target>
 			</trans-unit>
 
 			<trans-unit id="opened">
-				<source>Geöffnet</source>
+				<target>Aperto</target>
 			</trans-unit>
 			<trans-unit id="closed">
-				<source>Geschlossen</source>
+				<target>Chiuso</target>
 			</trans-unit>
 		</body>
 	</file>
