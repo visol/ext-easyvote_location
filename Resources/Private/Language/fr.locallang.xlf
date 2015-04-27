@@ -5,13 +5,13 @@
 		<body>
 
 			<trans-unit id="post_box">
-				<target>Boîte postale</target>
+				<target>Boîte aux lettres</target>
 			</trans-unit>
 			<trans-unit id="last_emptying">
 				<target>Dernière levée</target>
 			</trans-unit>
 			<trans-unit id="hour">
-				<target>heure</target>
+				<target>heures</target>
 			</trans-unit>
 			<trans-unit id="monday">
 				<target>Lundi</target>
@@ -50,10 +50,10 @@
 				<target>Numéro postal...</target>
 			</trans-unit>
 			<trans-unit id="enter-full-screen">
-				<target>Plein écran</target>
+				<target>Mode plein écran</target>
 			</trans-unit>
 			<trans-unit id="exit-full-screen">
-				<target>Quitter plein écran</target>
+				<target>Quitter mode plein écran</target>
 			</trans-unit>
 
 			<trans-unit id="opened">

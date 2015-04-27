@@ -83,7 +83,7 @@
 				<source>Samstag</source>
 			</trans-unit>
 			<trans-unit id="sunday">
-				<source>Sontag</source>
+				<source>Sonntag</source>
 			</trans-unit>
 			<trans-unit id="post_a">
 				<source>A-Post</source>
@@ -92,7 +92,7 @@
 				<source>B-Post</source>
 			</trans-unit>
 			<trans-unit id="find_my_way">
-				<source>Find my way</source>
+				<source>Wegbeschreibung anzeigen</source>
 			</trans-unit>
 			<trans-unit id="search">
 				<source>Suche</source>

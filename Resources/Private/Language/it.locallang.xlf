@@ -8,13 +8,13 @@
 				<target>Casella postale</target>
 			</trans-unit>
 			<trans-unit id="last_emptying">
-				<target>Ultima collezione</target>
+				<target>Ultima vuotatura</target>
 			</trans-unit>
 			<trans-unit id="hour">
 				<target>ore</target>
 			</trans-unit>
 			<trans-unit id="monday">
-				<target>Lunedi</target>
+				<target>Lunedì</target>
 			</trans-unit>
 			<trans-unit id="tuesday">
 				<target>Martedì</target>
@@ -23,7 +23,7 @@
 				<target>Mercoledì</target>
 			</trans-unit>
 			<trans-unit id="thursday">
-				<target>Giovedi</target>
+				<target>Giovedì</target>
 			</trans-unit>
 			<trans-unit id="friday">
 				<target>Venerdì</target>
@@ -41,19 +41,19 @@
 				<target>Posta B</target>
 			</trans-unit>
 			<trans-unit id="find_my_way">
-				<target>Trovare la sua strada</target>
+				<target>Trova la strada</target>
 			</trans-unit>
 			<trans-unit id="search">
 				<target>Cercare</target>
 			</trans-unit>
 			<trans-unit id="placeholder_postal_code">
-				<target>PLZ eingeben...</target>
+				<target>inserisci CAP…</target>
 			</trans-unit>
 			<trans-unit id="enter-full-screen">
 				<target>Schermo intero</target>
 			</trans-unit>
 			<trans-unit id="exit-full-screen">
-				<target>Uscita schermo intero</target>
+				<target>Chiudi schermo intero</target>
 			</trans-unit>
 
 			<trans-unit id="opened">
