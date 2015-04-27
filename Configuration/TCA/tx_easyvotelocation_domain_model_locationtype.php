@@ -11,6 +11,7 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_locationtype'] = array(
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'dividers2tabs' => TRUE,
+		'rootLevel' => -1,
 
 		'languageField' => 'sys_language_uid',
 		'transOrigPointerField' => 'l10n_parent',

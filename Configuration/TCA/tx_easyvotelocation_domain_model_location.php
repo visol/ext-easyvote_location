@@ -6,7 +6,9 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:easyvote_location/Resources/Private/Language/locallang_db.xlf:tx_easyvotelocation_domain_model_location',
-		'label' => 'name',
+		'label' => 'location_type',
+		'label_alt' => 'street,zip,city',
+		'label_alt_force' => TRUE,
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -23,7 +25,7 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('easyvote_location') . 'Resources/Public/Icons/tx_easyvotelocation_domain_model_location.gif'
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, address, longitude, latitude, city, creator, last_updater, description, photo, location_type, '),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, street, zip, city, longitude, latitude, map, creator, last_updater, description, photo, location_type'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -79,22 +81,14 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 				'eval' => 'trim'
 			),
 		),
-		'address' => array(
-			'exclude' => 1,
-			'label' => 'LLL:EXT:easyvote_location/Resources/Private/Language/locallang_db.xlf:tx_easyvotelocation_domain_model_location.address',
-			'config' => array(
-				'type' => 'input',
-				'size' => 30,
-				'eval' => 'trim'
-			),
-		),
 		'longitude' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:easyvote_location/Resources/Private/Language/locallang_db.xlf:tx_easyvotelocation_domain_model_location.longitude',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'double2'
+				'eval' => 'required',
+				'default' => '7.43542039'
 			)
 		),
 		'latitude' => array(
@@ -103,8 +97,38 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'double2'
+				'eval' => 'required',
+				'default' => '46.94631487'
 			)
+		),
+		'map' => array(
+			'label' => 'LLL:EXT:easyvote_location/Resources/Private/Language/locallang_db.xlf:tx_easyvotelocation_domain_model_location.map',
+			'config' => array(
+				'type' => 'user',
+				'userFunc' => '\Visol\EasyvoteLocation\UserFunc\Map->render',
+				'parameters' => array(
+					'latitude' => 'latitude',
+					'longitude' => 'longitude',
+				),
+			),
+		),
+		'street' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:easyvote_location/Resources/Private/Language/locallang_db.xlf:tx_easyvotelocation_domain_model_location.street',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'zip' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:easyvote_location/Resources/Private/Language/locallang_db.xlf:tx_easyvotelocation_domain_model_location.zip',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
 		),
 		'city' => array(
 			'exclude' => 1,
@@ -157,26 +181,13 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_easyvotelocation_domain_model_locationtype',
+				'foreign_table_where' => 'AND tx_easyvotelocation_domain_model_locationtype.sys_language_uid IN (-1,0)',
 				'minitems' => 0,
 				'maxitems' => 1,
 			),
 		),
-		'locationtype' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
-		),
 
-		'street' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
-		),
-		'zip' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
-		),
+
 		'emptying_time_day_1' => array(
 			'config' => array(
 				'type' => 'passthrough',

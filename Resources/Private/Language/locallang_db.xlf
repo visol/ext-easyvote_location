@@ -9,14 +9,23 @@
 			<trans-unit id="tx_easyvotelocation_domain_model_location.name">
 				<source>Name</source>
 			</trans-unit>
-			<trans-unit id="tx_easyvotelocation_domain_model_location.address">
-				<source>Address</source>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.street">
+				<source>Street</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.zip">
+				<source>Postal Code</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.city">
+				<source>City</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvotelocation_domain_model_location.longitude">
 				<source>Longitude</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvotelocation_domain_model_location.latitude">
 				<source>Latitude</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.map">
+				<source>Map</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvotelocation_domain_model_location.city">
 				<source>City</source>
