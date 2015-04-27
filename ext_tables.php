@@ -3,25 +3,28 @@ if (!defined('TYPO3_MODE')) {
 	die('Access denied.');
 }
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	'easyvote_location',
-	'Pi1',
-	'easyvote Location: Display voting locations on a map'
-);
+if (TYPO3_MODE === 'BE') {
 
-$pluginSignature = str_replace('_','',$_EXTKEY) . '_datamanager';
-$TCA['tt_content']['types']['list']['subtypes_addlist']['easyvotelocation_pi1'] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-	'easyvotelocation_pi1',
-	'FILE:EXT:easyvote_location/Configuration/FlexForm/location.xml'
-);
+	// Register plugins in the BE.
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+		'easyvote_location',
+		'Pi1',
+		'easyvote Location: Voting locations on a map'
+	);
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	'easyvote_location',
-	'Pi2',
-	'easyvote Location: Search form locality and zoom the map'
-);
+	$TCA['tt_content']['types']['list']['subtypes_addlist']['easyvotelocation_pi1'] = 'pi_flexform';
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+		'easyvotelocation_pi1',
+		'FILE:EXT:easyvote_location/Configuration/FlexForm/location.xml'
+	);
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_easyvotelocation_domain_model_location');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_easyvotelocation_domain_model_locationtype');
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+		'easyvote_location',
+		'Pi2',
+		'easyvote Location: Locality search form'
+	);
+
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_easyvotelocation_domain_model_location');
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_easyvotelocation_domain_model_locationtype');
+}
 

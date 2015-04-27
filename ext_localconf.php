@@ -11,7 +11,7 @@ if (!defined('TYPO3_MODE')) {
 	),
 	// non-cacheable actions
 	array(
-		'Location' => 'index', // @todo remove me!?
+		'Location' => 'index', // necessary since "injecting" the coordinates and zooming of the maps if the User is logged in.
 	)
 );
 
@@ -23,7 +23,7 @@ if (!defined('TYPO3_MODE')) {
 	),
 	// non-cacheable actions
 	array(
-		'Location' => 'search', // @todo remove me!?
+//		'Location' => 'search',
 	)
 );
 
@@ -38,7 +38,6 @@ if (!defined('TYPO3_MODE')) {
 		'LocationApi' => 'list, show',
 	)
 );
-
 
 // Configure commands that can be run from the cli_dispatch.phpsh script.
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Visol\EasyvoteLocation\Command\PostBoxCommandController';
