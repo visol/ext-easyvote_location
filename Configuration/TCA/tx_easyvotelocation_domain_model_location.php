@@ -154,18 +154,28 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:easyvote_location/Resources/Private/Language/locallang_db.xlf:tx_easyvotelocation_domain_model_location.creator',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
-				'eval' => 'trim'
+				'type' => 'select',
+				'foreign_table' => 'fe_users',
+				'foreign_table_where' => 'AND tx_extbase_type=\'Tx_Easyvote_CommunityUser\'',
+				'minitems' => 0,
+				'maxitems' => 1,
+				'items'   => array(
+					array('', ''),
+				),
 			),
 		),
 		'last_updater' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:easyvote_location/Resources/Private/Language/locallang_db.xlf:tx_easyvotelocation_domain_model_location.last_updater',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
-				'eval' => 'trim'
+				'type' => 'select',
+				'foreign_table' => 'fe_users',
+				'foreign_table_where' => 'AND tx_extbase_type=\'Tx_Easyvote_CommunityUser\'',
+				'minitems' => 0,
+				'maxitems' => 1,
+				'items'   => array(
+					array('', ''),
+				),
 			),
 		),
 		'description' => array(

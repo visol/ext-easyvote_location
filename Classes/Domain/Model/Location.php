@@ -53,14 +53,14 @@ class Location extends AbstractEntity {
 	protected $citySelection;
 
 	/**
-	 * @var string
+	 * @var \Visol\Easyvote\Domain\Model\CommunityUser
 	 */
-	protected $creator = '';
+	protected $creator;
 
 	/**
-	 * @var string
+	 * @var \Visol\Easyvote\Domain\Model\CommunityUser
 	 */
-	protected $lastUpdater = '';
+	protected $lastUpdater;
 
 	/**
 	 * @var string
@@ -211,44 +211,6 @@ class Location extends AbstractEntity {
 	}
 
 	/**
-	 * Returns the creator
-	 *
-	 * @return string $creator
-	 */
-	public function getCreator() {
-		return $this->creator;
-	}
-
-	/**
-	 * Sets the creator
-	 *
-	 * @param string $creator
-	 * @return void
-	 */
-	public function setCreator($creator) {
-		$this->creator = $creator;
-	}
-
-	/**
-	 * Returns the lastUpdater
-	 *
-	 * @return string $lastUpdater
-	 */
-	public function getLastUpdater() {
-		return $this->lastUpdater;
-	}
-
-	/**
-	 * Sets the lastUpdater
-	 *
-	 * @param string $lastUpdater
-	 * @return void
-	 */
-	public function setLastUpdater($lastUpdater) {
-		$this->lastUpdater = $lastUpdater;
-	}
-
-	/**
 	 * Returns the description
 	 *
 	 * @return string $description
@@ -390,6 +352,33 @@ class Location extends AbstractEntity {
 		$this->citySelection = $citySelection;
 	}
 
+	/**
+	 * @return \Visol\Easyvote\Domain\Model\CommunityUser
+	 */
+	public function getCreator() {
+		return $this->creator;
+	}
+
+	/**
+	 * @param \Visol\Easyvote\Domain\Model\CommunityUser $creator
+	 */
+	public function setCreator($creator) {
+		$this->creator = $creator;
+	}
+
+	/**
+	 * @return \Visol\Easyvote\Domain\Model\CommunityUser
+	 */
+	public function getLastUpdater() {
+		return $this->lastUpdater;
+	}
+
+	/**
+	 * @param \Visol\Easyvote\Domain\Model\CommunityUser $lastUpdater
+	 */
+	public function setLastUpdater($lastUpdater) {
+		$this->lastUpdater = $lastUpdater;
+	}
 
 	/**
 	 * @return string
