@@ -20,6 +20,7 @@ CREATE TABLE tx_easyvotelocation_domain_model_location (
 	street varchar(255) DEFAULT '' NOT NULL,
 	zip varchar(12) DEFAULT '' NOT NULL,
 	city varchar(64) DEFAULT '' NOT NULL,
+	city_selection int(11) unsigned DEFAULT '0' NOT NULL,
 	canton varchar(12) DEFAULT '' NOT NULL,
 	import_id varchar(64) DEFAULT '' NOT NULL,
 	emptying_time_day_1 varchar(12) DEFAULT '' NOT NULL,

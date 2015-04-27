@@ -25,7 +25,7 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('easyvote_location') . 'Resources/Public/Icons/tx_easyvotelocation_domain_model_location.gif'
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, street, zip, city, longitude, latitude, map, creator, last_updater, description, photo, location_type'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, street, zip, city, city_selection, longitude, latitude, map, creator, last_updater, description, photo, location_type'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -137,6 +137,17 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 				'type' => 'input',
 				'size' => 30,
 				'eval' => 'trim'
+			),
+		),
+		'city_selection' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:easyvote_location/Resources/Private/Language/locallang_db.xlf:tx_easyvotelocation_domain_model_location.city_selection',
+			'config' => array(
+				'type' => 'select',
+				'foreign_table' => 'tx_easyvote_domain_model_city',
+				'items'   => array(
+					array('', ''),
+				),
 			),
 		),
 		'creator' => array(

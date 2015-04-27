@@ -18,6 +18,9 @@
 			<trans-unit id="tx_easyvotelocation_domain_model_location.city">
 				<source>City</source>
 			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.city_selection">
+				<source>City (Selection)</source>
+			</trans-unit>
 			<trans-unit id="tx_easyvotelocation_domain_model_location.longitude">
 				<source>Longitude</source>
 			</trans-unit>

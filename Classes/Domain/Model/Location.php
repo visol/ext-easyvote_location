@@ -48,6 +48,11 @@ class Location extends AbstractEntity {
 	protected $city = '';
 
 	/**
+	 * @var \Visol\Easyvote\Domain\Model\City
+	 */
+	protected $citySelection;
+
+	/**
 	 * @var string
 	 */
 	protected $creator = '';
@@ -206,25 +211,6 @@ class Location extends AbstractEntity {
 	}
 
 	/**
-	 * Returns the city
-	 *
-	 * @return string $city
-	 */
-	public function getCity() {
-		return $this->city;
-	}
-
-	/**
-	 * Sets the city
-	 *
-	 * @param string $city
-	 * @return void
-	 */
-	public function setCity($city) {
-		$this->city = $city;
-	}
-
-	/**
 	 * Returns the creator
 	 *
 	 * @return string $creator
@@ -370,6 +356,40 @@ class Location extends AbstractEntity {
 		$this->zip = $zip;
 		return $this;
 	}
+
+	/**
+	 * Returns the city
+	 *
+	 * @return string $city
+	 */
+	public function getCity() {
+		return $this->city;
+	}
+
+	/**
+	 * Sets the city
+	 *
+	 * @param string $city
+	 * @return void
+	 */
+	public function setCity($city) {
+		$this->city = $city;
+	}
+
+	/**
+	 * @return \Visol\Easyvote\Domain\Model\City
+	 */
+	public function getCitySelection() {
+		return $this->citySelection;
+	}
+
+	/**
+	 * @param \Visol\Easyvote\Domain\Model\City $citySelection
+	 */
+	public function setCitySelection($citySelection) {
+		$this->citySelection = $citySelection;
+	}
+
 
 	/**
 	 * @return string
