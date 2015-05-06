@@ -5,8 +5,7 @@
   "scripts": {
     "grunt": "grunt"
   },
-  "author": "Luís Couto",
-  "license": "ISC",
+  "author": "Fabien Udriot",
   "devDependencies": {
     "grunt-contrib-watch": "^0.6.1",
     "babel-core": "^4.7.16",
