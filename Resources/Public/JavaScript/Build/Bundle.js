@@ -343,24 +343,28 @@ var Maps = (function () {
 
 					infoBox.open(this.map, this);
 
-					var markerPixel = infoBox.getProjection().fromLatLngToContainerPixel(infoBox.getPosition());
-					var centerPixel = infoBox.getProjection().fromLatLngToContainerPixel(this.map.getCenter());
+					// Additional listener in case the infoBox
+					// is still opening if / when the answer of the server is slow.
+					google.maps.event.addListener(infoBox, "domready", function () {
+						var markerPixel = infoBox.getProjection().fromLatLngToContainerPixel(infoBox.getPosition());
+						var centerPixel = infoBox.getProjection().fromLatLngToContainerPixel(this.map.getCenter());
 
-					var correction = 150; // correction so that the bubble is displayed in the map
-					var moveX = (centerPixel.x - markerPixel.x) * -1;
-					var moveY = (centerPixel.y - markerPixel.y) * -1 - correction;
-					this.map.panBy(moveX, moveY);
+						var correction = 150; // correction so that the bubble is displayed in the map
+						var moveX = (centerPixel.x - markerPixel.x) * -1;
+						var moveY = (centerPixel.y - markerPixel.y) * -1 - correction;
+						this.map.panBy(moveX, moveY);
 
-					var isMissingContent = infoBox.getContent().match("loading.gif");
-					if (isMissingContent) {
-						$.ajax({
-							url: "/routing/locations/" + marker.id + "?L=" + EasyVote.Language,
-							success: function success(location) {
-								var content = "<div class=\"maps-infoBox\">" + location.description + "</div>";
-								infoBox.setContent(content);
-							}
-						});
-					}
+						var isMissingContent = infoBox.getContent().match("loading.gif");
+						if (isMissingContent) {
+							$.ajax({
+								url: "/routing/locations/" + marker.id + "?L=" + EasyVote.Language,
+								success: function success(location) {
+									var content = "<div class=\"maps-infoBox\">" + location.description + "</div>";
+									infoBox.setContent(content);
+								}
+							});
+						}
+					});
 				});
 
 				return marker;

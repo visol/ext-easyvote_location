@@ -190,24 +190,28 @@ class Maps {
 
 			infoBox.open(this.map, this);
 
-			let markerPixel = infoBox.getProjection().fromLatLngToContainerPixel(infoBox.getPosition());
-			let centerPixel = infoBox.getProjection().fromLatLngToContainerPixel(this.map.getCenter());
+			// Additional listener in case the infoBox
+			// is still opening if / when the answer of the server is slow.
+			google.maps.event.addListener(infoBox, 'domready', function(){
+				let markerPixel = infoBox.getProjection().fromLatLngToContainerPixel(infoBox.getPosition());
+				let centerPixel = infoBox.getProjection().fromLatLngToContainerPixel(this.map.getCenter());
 
-			let correction = 150; // correction so that the bubble is displayed in the map
-			let moveX = (centerPixel.x - markerPixel.x) * -1;
-			let moveY = (centerPixel.y - markerPixel.y) * -1 - correction;
-			this.map.panBy(moveX, moveY);
+				let correction = 150; // correction so that the bubble is displayed in the map
+				let moveX = (centerPixel.x - markerPixel.x) * -1;
+				let moveY = (centerPixel.y - markerPixel.y) * -1 - correction;
+				this.map.panBy(moveX, moveY);
 
-			var isMissingContent = infoBox.getContent().match('loading.gif');
-			if (isMissingContent) {
-				$.ajax({
-					url: '/routing/locations/' + marker.id + '?L=' + EasyVote.Language,
-					success: function success(location) {
-						var content = `<div class="maps-infoBox">${location.description}</div>`;
-						infoBox.setContent(content);
-					}
-				});
-			}
+				var isMissingContent = infoBox.getContent().match('loading.gif');
+				if (isMissingContent) {
+					$.ajax({
+						url: '/routing/locations/' + marker.id + '?L=' + EasyVote.Language,
+						success: function success(location) {
+							var content = `<div class="maps-infoBox">${location.description}</div>`;
+							infoBox.setContent(content);
+						}
+					});
+				}
+			});
 		});
 
 		return marker;
