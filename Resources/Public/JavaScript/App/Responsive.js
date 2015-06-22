@@ -23,12 +23,12 @@ class Responsive {
 		this.reference.addFunc({
 			breakpoint: "mobile",
 			enter: function enter() {
-				let $form = $('#c2618').find('form').contents().parent().detach();
+				let $form = $('#c3160').find('form').contents().parent().detach();
 				$('#container-mobile').append($form);
 			},
 			exit: function exit() {
 				let $form = $('#container-mobile').find('form').parent().contents().detach();
-				$('#c2618 .content-box').append($form);
+				$('#c3160 .content-box').append($form);
 			}
 		});
 	}
