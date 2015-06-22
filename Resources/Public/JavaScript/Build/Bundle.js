@@ -523,10 +523,10 @@ var Responsive = (function () {
 					breakpoint: "mobile",
 					enter: function enter() {
 						var $form = $("#c3160").find("form").contents().parent().detach();
-						$("#container-mobile").append($form);
+						$("#container-mobile .content-box").append($form);
 					},
 					exit: function exit() {
-						var $form = $("#container-mobile").find("form").parent().contents().detach();
+						var $form = $("#container-mobile .content-box").find("form").parent().contents().detach();
 						$("#c3160 .content-box").append($form);
 					}
 				});
