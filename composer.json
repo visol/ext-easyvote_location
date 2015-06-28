@@ -4,5 +4,8 @@
 	"description": "Display voting locations on a map",
 	"homepage": "https://github.com/visol/ext-easyvote_location",
 	"license": ["GPL-2.0+"],
-	"version": "1.0.0"
+	"version": "1.0.0",
+	"require": {
+		"visol/easyvote": "dev-master"
+	}
 }
