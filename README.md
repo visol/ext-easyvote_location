@@ -1,4 +1,4 @@
-EasyVote Location
+Easyvote Location
 =================
 
 TYPO3 CMS extension for displaying voting locations on a map.

@@ -22,8 +22,8 @@ class Maps {
 
 		this.infoWindowReference = null;
 		this.map = new google.maps.Map(document.getElementById("map-canvas"), {
-			zoom: EasyVote.Zoom,
-			center: new google.maps.LatLng(EasyVote.Latitude, EasyVote.Longitude),
+			zoom: EasyvoteLocation.Zoom,
+			center: new google.maps.LatLng(EasyvoteLocation.Latitude, EasyvoteLocation.Longitude),
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
 
@@ -43,8 +43,8 @@ class Maps {
 
 		var legend = document.createElement("div");
 		legend.setAttribute("id", "legend");
-		for (var key in EasyVote.LocationTypes) {
-			var type = EasyVote.LocationTypes[key];
+		for (var key in EasyvoteLocation.LocationTypes) {
+			var type = EasyvoteLocation.LocationTypes[key];
 			var name = type.name;
 			var icon = type.icon;
 			var div = document.createElement("div");
@@ -145,7 +145,7 @@ class Maps {
 	 */
 	computeIcon(location) {
 		// Remove the trailing ".png" extension
-		var iconBasePath = EasyVote.LocationTypes[location.type].icon.replace(".png", "");
+		var iconBasePath = EasyvoteLocation.LocationTypes[location.type].icon.replace(".png", "");
 		if (!location.active) {
 			iconBasePath += "Gray";
 		}
@@ -204,7 +204,7 @@ class Maps {
 				var isMissingContent = infoBox.getContent().match('loading.gif');
 				if (isMissingContent) {
 					$.ajax({
-						url: '/routing/locations/' + marker.id + '?L=' + EasyVote.Language,
+						url: '/routing/locations/' + marker.id + '?L=' + EasyvoteLocation.Language,
 						success: function success(location) {
 							var content = `<div class="maps-infoBox">${location.description}</div>`;
 							infoBox.setContent(content);

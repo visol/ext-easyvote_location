@@ -54,7 +54,7 @@ class ZoomViewHelper extends AbstractViewHelper {
 		}
 
 		return sprintf(
-			'EasyVote.Zoom = %s;',
+			'EasyvoteLocation.Zoom = %s;',
 			$zoom
 		);
 	}

@@ -37,7 +37,7 @@ class ToJsonViewHelper extends AbstractViewHelper {
 		$encodedObjects = $dataEncoder->encode($objects);
 
 		return sprintf(
-			'EasyVote.%s = %s;',
+			'EasyvoteLocation.%s = %s;',
 			ucfirst($type). 's', // Add ending "s" for the plural. Works so far...
 			$encodedObjects
 		);

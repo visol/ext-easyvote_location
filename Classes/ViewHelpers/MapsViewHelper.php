@@ -40,8 +40,8 @@ class MapsViewHelper extends AbstractViewHelper {
 	protected function getRawCode() {
 		return "
 <script>
-if (typeof EasyVote !== 'object') {
-	window.EasyVote = {}
+if (typeof EasyvoteLocation !== 'object') {
+	window.EasyvoteLocation = {}
 }
 %s
 </script>

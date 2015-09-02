@@ -58,7 +58,7 @@ class CoordinateViewHelper extends AbstractViewHelper {
 		}
 
 		return sprintf(
-			'EasyVote.%s = %s;',
+			'EasyvoteLocation.%s = %s;',
 			ucfirst($type),
 			$point
 		);
