@@ -15,6 +15,7 @@ namespace Visol\EasyvoteLocation\ViewHelpers\Marker;
  */
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 use Visol\EasyvoteLocation\Domain\Model\Location;
 
@@ -31,10 +32,19 @@ class IconViewHelper extends AbstractViewHelper {
 		/** @var Location $location */
 		$location = $this->templateVariableContainer->get('location');
 		$extensionPath = ExtensionManagementUtility::siteRelPath('easyvote_location');
-		return sprintf('%sResources/Public/Icons/PostBox%s.png',
+		$locationTypeIcon = $this->getLocationTypeService()->getIcon($location->getLocationType());
+		$locationTypeName = explode('.', $locationTypeIcon)[0];
+		return sprintf('%sResources/Public/Icons/' . $locationTypeName . '%s.png',
 			$extensionPath,
 			$location->getIsActive() ? '' : 'Gray'
 		);
+	}
+
+	/**
+	 * @return \Visol\EasyvoteLocation\Service\LocationTypeService
+	 */
+	public function getLocationTypeService(){
+		return GeneralUtility::makeInstance('Visol\EasyvoteLocation\Service\LocationTypeService');
 	}
 
 }

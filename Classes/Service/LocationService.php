@@ -21,7 +21,7 @@ use Visol\EasyvoteLocation\Enumeration\Day;
 use Visol\EasyvoteLocation\Enumeration\Time;
 
 /**
- * Service related to the User.
+ * Service related to the Location
  */
 class LocationService {
 

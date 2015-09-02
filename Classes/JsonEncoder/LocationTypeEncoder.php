@@ -15,6 +15,7 @@ namespace Visol\EasyvoteLocation\JsonEncoder;
  */
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use Visol\EasyvoteLocation\Domain\Model\LocationType;
 
@@ -37,7 +38,7 @@ class LocationTypeEncoder implements JsonEncoderInterface {
 
 			$collectedObjects[$object->getUid()] = array(
 				'name' => $object->getName(),
-				'icon' => $this->getBasePath() . $this->getIcon($object),
+				'icon' => $this->getBasePath() . $this->getLocationTypeService()->getIcon($object),
 			);
 		}
 
@@ -52,18 +53,10 @@ class LocationTypeEncoder implements JsonEncoderInterface {
 	}
 
 	/**
-	 * @param LocationType $locationType
-	 * @return string
+	 * @return \Visol\EasyvoteLocation\Service\LocationTypeService
 	 */
-	protected function getIcon(LocationType $locationType) {
-		$icon = '';
-		if ($locationType->getUid() === LocationType::TYPE_POST_BOX) {
-			$icon = 'PostBox.png';
-		} elseif ($locationType->getUid() === LocationType::TYPE_MUNICIPAL_ADMINISTRATION) {
-			$icon = 'MunicipalAdministration.png';
-		} elseif ($locationType->getUid() === LocationType::TYPE_POLLING_STATION) {
-			$icon = 'PollingStation.png';
-		}
-		return $icon;
+	public function getLocationTypeService(){
+		return GeneralUtility::makeInstance('Visol\EasyvoteLocation\Service\LocationTypeService');
 	}
+
 }
