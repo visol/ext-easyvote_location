@@ -518,16 +518,17 @@ var Responsive = (function () {
     */
 
 			value: function bindAction() {
-
 				this.reference.addFunc({
 					breakpoint: "mobile",
 					enter: function enter() {
-						var $form = $("#c3160").find("form").contents().parent().detach();
-						$("#container-mobile .content-box").append($form);
+						EasyvoteLocation.originalWrapperFilter = $("#wrapper-filter");
+						EasyvoteLocation.originalWrapperFilterParentContent = EasyvoteLocation.originalWrapperFilter.closest(".csc-default");
+						var $form = EasyvoteLocation.originalWrapperFilter.parent().detach();
+						$("#container-mobile").append($form);
 					},
 					exit: function exit() {
-						var $form = $("#container-mobile .content-box").find("form").parent().contents().detach();
-						$("#c3160 .content-box").append($form);
+						var $form = $("#container-mobile").find(".tx-easyvote-location").detach();
+						EasyvoteLocation.originalWrapperFilterParentContent.append($form);
 					}
 				});
 			}
