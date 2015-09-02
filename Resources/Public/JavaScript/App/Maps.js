@@ -62,7 +62,7 @@ class Maps {
 	 */
 	addMarkers() {
 		//var serializedLocations = null; // debug
-		var serializedLocations = sessionStorage.getItem("EasyVote.Locations");
+		var serializedLocations = sessionStorage.getItem("EasyvoteLocation.Locations");
 
 		// If we don't have the points in Session Storage, fetch them by Ajax.
 		if (!$.cookie("isDataValid") || !serializedLocations) {
@@ -73,7 +73,7 @@ class Maps {
 				success: function success(locations) {
 
 					// Store data for the session
-					sessionStorage.setItem("EasyVote.Locations", JSON.stringify(locations));
+					sessionStorage.setItem("EasyvoteLocation.Locations", JSON.stringify(locations));
 
 					Maps.getInstance().createMarkers(locations);
 
