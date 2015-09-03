@@ -16,6 +16,7 @@ namespace Visol\EasyvoteLocation\Domain\Model;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Location
@@ -100,6 +101,14 @@ class Location extends AbstractEntity {
 	protected $zip = '';
 
 	/**
+	 * Events at this location
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Visol\Easyvote\Domain\Model\Event>
+	 * @lazy
+	 */
+	protected $events;
+
+	/**
 	 * @var string
 	 */
 	protected $emptyingTimeDay1 = '';
@@ -133,6 +142,26 @@ class Location extends AbstractEntity {
 	 * @var string
 	 */
 	protected $emptyingTimeDay7 = '';
+
+	/**
+	 * __construct
+	 *
+	 * @return \Visol\EasyvoteLocation\Domain\Model\Location
+	 */
+	public function __construct() {
+		// Do not remove the next line: It would break the functionality
+		parent::__construct();
+		$this->initStorageObjects();
+	}
+
+	/**
+	 * Initializes all ObjectStorage properties.
+	 *
+	 * @return void
+	 */
+	protected function initStorageObjects() {
+		$this->events= new ObjectStorage();
+	}
 
 	/**
 	 * Returns the name
@@ -378,6 +407,13 @@ class Location extends AbstractEntity {
 	 */
 	public function setLastUpdater($lastUpdater) {
 		$this->lastUpdater = $lastUpdater;
+	}
+
+	/**
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Visol\Easyvote\Domain\Model\Event>
+	 */
+	public function getEvents() {
+		return $this->events;
 	}
 
 	/**

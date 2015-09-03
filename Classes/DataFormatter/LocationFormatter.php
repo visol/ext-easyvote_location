@@ -53,6 +53,7 @@ class LocationFormatter {
 		if ((int)$location->getLocationType()->getUid() === LocationType::TYPE_POST_BOX) {
 			$view = $this->getFluidView('PostBox');
 			$view->assign('location', $location);
+			$view->assign('numberOfParticipants', $this->calculateEventsParticipants($location));
 			$description = $view->render();
 		} elseif ((int)$location->getLocationType()->getUid() === LocationType::TYPE_MUNICIPAL_ADMINISTRATION) {
 			/*
@@ -76,7 +77,7 @@ class LocationFormatter {
 			 * Ort melden
              *  			 */
 			$description = '';
-		} elseif ((int)$location->getLocationType()->getUid() === LocationType::TYPE_MUNICIPAL_ADMINISTRATION) {
+		} elseif ((int)$location->getLocationType()->getUid() === LocationType::TYPE_POLLING_STATION) {
 			/*
 			 * Example:
 			 * --------
@@ -98,8 +99,36 @@ class LocationFormatter {
 			 * Ort melden
 			 */
 			$description = '';
+		} elseif ((int)$location->getLocationType()->getUid() === LocationType::TYPE_VOTENOW2015) {
+			$view = $this->getFluidView('VoteNow2015');
+			$view->assign('location', $location);
+			$view->assign('numberOfParticipants', $this->calculateEventsParticipants($location));
+			$description = $view->render();
 		}
 		return $description;
+	}
+
+	/**
+	 * Calculates the number of people that will vote on a certain location
+	 *
+	 * @param $location \Visol\EasyvoteLocation\Domain\Model\Location
+	 * @return int|null
+	 */
+	protected function calculateEventsParticipants($location) {
+		if ($location->getEvents()->count()) {
+			$counter = 0;
+			foreach ($location->getEvents() as $event) {
+				/** @var $event \Visol\Easyvote\Domain\Model\Event */
+				// The organizer of the event is one participant
+				$counter++;
+				if ($event->getCommunityUser() instanceof \Visol\Easyvote\Domain\Model\CommunityUser) {
+					$counter = $counter + $event->getCommunityUser()->getFollowers()->count();
+				}
+			}
+			return $counter;
+		} else {
+			return NULL;
+		}
 	}
 
 	/**

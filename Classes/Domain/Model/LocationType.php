@@ -24,6 +24,7 @@ class LocationType extends AbstractValueObject {
 	const TYPE_POST_BOX = 1;
 	const TYPE_MUNICIPAL_ADMINISTRATION = 2;
 	const TYPE_POLLING_STATION = 3;
+	const TYPE_VOTENOW2015 = 10;
 
 	/**
 	 * name

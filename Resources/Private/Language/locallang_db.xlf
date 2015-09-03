@@ -48,6 +48,10 @@
 			<trans-unit id="tx_easyvotelocation_domain_model_location.photo">
 				<source>Photo</source>
 			</trans-unit>
+			<trans-unit id="tx_easyvotelocation_domain_model_location.events">
+				<source>Events</source>
+			</trans-unit>
+
 			<trans-unit id="tx_easyvotelocation_domain_model_location.location_type">
 				<source>Location Type</source>
 			</trans-unit>

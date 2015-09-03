@@ -1,0 +1,25 @@
+<div>
+	<f:image src="{l:marker.icon()}"/>
+</div>
+<div style="margin-top: 10px;">
+	<strong>
+		{location.name}
+	</strong>
+	<div class="description">
+		<f:format.raw>{location.description}</f:format.raw>
+	</div>
+	{location.street}
+	<br/>
+	{location.zip} {location.city}
+</div>
+<f:if condition="{numberOfParticipants} > 0">
+	<div class="participants">
+		{numberOfParticipants} <f:translate key="participants" extensionName="easyvote_location"/>
+	</div>
+</f:if>
+<div style="margin-top: 10px;">
+	<a class="btn btn-primary btn-sm" href="https://www.google.com/maps/dir/Current+Location/{location.latitude},{location.longitude}" target="_blank">
+		<f:translate key="find_my_way" extensionName="easyvote_location"/>
+	</a>
+</div>
+{namespace l=Visol\EasyvoteLocation\ViewHelpers}

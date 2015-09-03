@@ -93,8 +93,8 @@ class VotingDayService implements SingletonInterface {
 				$this->contentElementValue = (int)$data['data']['sDEF']['lDEF']['settings.nextVotingDay']['vDEF'];
 			}
 		}
-
 		return !is_null($this->contentElementValue);
+
 	}
 
 	/**

@@ -22,7 +22,11 @@
 
 	{location.zip} {location.city}
 </div>
-
+<f:if condition="{numberOfParticipants} > 0">
+	<div class="participants">
+		{numberOfParticipants} <f:translate key="participants" extensionName="easyvote_location"/>
+	</div>
+</f:if>
 <f:if condition="{location.isActive}">
 	<div style="margin-top: 10px;">
 		<f:translate key="last_emptying" extensionName="easyvote_location"/>

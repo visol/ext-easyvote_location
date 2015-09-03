@@ -113,6 +113,14 @@
 			<trans-unit id="closed">
 				<source>Geschlossen</source>
 			</trans-unit>
+
+			<trans-unit id="participants">
+				<source>Zusagen</source>
+			</trans-unit>
+			<trans-unit id="participate">
+				<source>Teilnehmen</source>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>

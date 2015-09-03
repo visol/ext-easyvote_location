@@ -4,12 +4,15 @@
 }
 
 #legend {
-	background: white;
+	background: rgba(255, 255, 255, 0.71);
 	padding: 10px;
 	div {
 		margin-bottom: 5px;
 		&:last-child {
 			margin-bottom: 0;
+		}
+		img {
+			margin-right: 5px;
 		}
 	}
 }
@@ -20,6 +23,22 @@
 	color: white;
 	font-size: 130%;
 	border-radius: 5px;
+	.description {
+		.organizer {
+			font-size: 11px;
+			margin-bottom: 10px;
+		}
+		a {
+			color: @white;
+			&:hover {
+				color: @white;
+				text-decoration: underline;
+			}
+		}
+	}
+	.participants {
+		margin-top: 10px;
+	}
 }
 
 .maps-infoBox:after,

@@ -257,7 +257,7 @@ var Maps = (function () {
 					var marker = this.createMarker(location);
 					if (location.type === 1) {
 						markers1.push(marker);
-					} else if (location.type === 2 || location.type === 3) {
+					} else if (location.type === 2 || location.type === 3 || location.type === 10) {
 						markers2.push(marker);
 					}
 				}
