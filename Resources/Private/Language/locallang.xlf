@@ -120,6 +120,9 @@
 			<trans-unit id="participate">
 				<source>Teilnehmen</source>
 			</trans-unit>
+			<trans-unit id="mobilize_friends">
+				<source>Freunde mobilisieren</source>
+			</trans-unit>
 
 		</body>
 	</file>
