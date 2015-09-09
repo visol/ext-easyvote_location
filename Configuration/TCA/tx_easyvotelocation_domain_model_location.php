@@ -15,9 +15,9 @@ $GLOBALS['TCA']['tx_easyvotelocation_domain_model_location'] = array(
 		'dividers2tabs' => TRUE,
 		'type' => 'location_type',
 
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
+//		'languageField' => 'sys_language_uid',
+//		'transOrigPointerField' => 'l10n_parent',
+//		'transOrigDiffSourceField' => 'l10n_diffsource',
 		'delete' => 'deleted',
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
