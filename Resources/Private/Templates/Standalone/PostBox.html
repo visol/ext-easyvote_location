@@ -1,4 +1,4 @@
-<div>
+<div class="header">
 	<f:image src="{l:marker.icon()}"/>
 	<strong style="padding-left: 5px;">
 		<f:if condition="{location.isActive}">
@@ -10,6 +10,11 @@
 			</f:else>
 		</f:if>
 	</strong>
+	<f:if condition="{numberOfParticipants} > 0">
+		<div class="participants">
+			{numberOfParticipants} <f:translate key="participants" extensionName="easyvote_location"/>
+		</div>
+	</f:if>
 </div>
 <div style="margin-top: 10px;">
 	<strong>
