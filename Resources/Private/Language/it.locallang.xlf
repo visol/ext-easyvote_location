@@ -62,6 +62,16 @@
 			<trans-unit id="closed">
 				<target>Chiuso</target>
 			</trans-unit>
+
+			<trans-unit id="participants">
+				<target>partecipanti</target>
+			</trans-unit>
+			<trans-unit id="participate">
+				<target>partecipare</target>
+			</trans-unit>
+			<trans-unit id="mobilize_friends">
+				<target>Scegli il luogo</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

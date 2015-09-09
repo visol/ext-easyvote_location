@@ -5,13 +5,13 @@
 		<body>
 
 			<trans-unit id="post_box">
-				<target>Boîte aux lettres</target>
+				<target>Boîte postale</target>
 			</trans-unit>
 			<trans-unit id="last_emptying">
 				<target>Dernière levée</target>
 			</trans-unit>
 			<trans-unit id="hour">
-				<target>heures</target>
+				<target>heure</target>
 			</trans-unit>
 			<trans-unit id="monday">
 				<target>Lundi</target>
@@ -50,10 +50,10 @@
 				<target>Numéro postal...</target>
 			</trans-unit>
 			<trans-unit id="enter-full-screen">
-				<target>Mode plein écran</target>
+				<target>Plein écran</target>
 			</trans-unit>
 			<trans-unit id="exit-full-screen">
-				<target>Quitter mode plein écran</target>
+				<target>Quitter plein écran</target>
 			</trans-unit>
 
 			<trans-unit id="opened">
@@ -62,6 +62,16 @@
 			<trans-unit id="closed">
 				<target>Fermé</target>
 			</trans-unit>
+			
+			<trans-unit id="participants">
+				<target>participants</target>
+			</trans-unit>
+			<trans-unit id="participate">
+				<target>participer</target>
+			</trans-unit>
+			<trans-unit id="mobilize_friends">
+				<target>Choisis l’endroit</target>
+			</trans-unit>			
 		</body>
 	</file>
 </xliff>
