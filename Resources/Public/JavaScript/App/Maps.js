@@ -149,6 +149,9 @@ class Maps {
 		if (!location.active) {
 			iconBasePath += "Gray";
 		}
+		if (location.hasEvent) {
+			iconBasePath += "Event";
+		}
 		return iconBasePath + ".png";
 	}
 

@@ -34,9 +34,12 @@ class IconViewHelper extends AbstractViewHelper {
 		$extensionPath = ExtensionManagementUtility::siteRelPath('easyvote_location');
 		$locationTypeIcon = $this->getLocationTypeService()->getIcon($location->getLocationType());
 		$locationTypeName = explode('.', $locationTypeIcon)[0];
+		$iconSuffix = '';
+		if ($location->getIsActive()) { $iconSuffix .= 'Gray'; }
+		if ($location->getEvents()->count() > 0) { $iconSuffix .= 'Event'; }
 		return sprintf('%sResources/Public/Icons/' . $locationTypeName . '%s.png',
 			$extensionPath,
-			$location->getIsActive() ? '' : 'Gray'
+			$iconSuffix
 		);
 	}
 

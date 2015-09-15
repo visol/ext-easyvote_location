@@ -39,6 +39,7 @@ class LocationEncoder implements JsonEncoderInterface {
 				'longitude' => $location['longitude'] - 0,
 				'type' => (int)$location['location_type'],
 				'active' => $this->getLocationService($location)->isActive(),
+				'hasEvent' => $location['events'] > 0
 			);
 		}
 		return json_encode($collectedObjects);
