@@ -14,8 +14,10 @@
 		<f:format.raw>{location.description}</f:format.raw>
 	</div>
 	{location.street}
-	<br/>
-	{location.zip} {location.city}
+	<f:if condition="{location.citySelection}">
+		<br/>
+		{location.citySelection.postalCode} {location.citySelection.name}
+	</f:if>
 </div>
 
 <div style="margin-top: 10px;">
