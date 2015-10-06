@@ -30,7 +30,7 @@ INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (1,	0,	'Briefka
 INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (2,	0,	'Gemeindeverwaltung',	'',	1,	0,	1424700315,	1424700315,	12,	0,	0,	0,	0,	NULL);
 INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (3,	0,	'Wahllokal',	'',	0,	0,	1424702087,	1424702087,	12,	0,	0,	0,	0,	NULL);
 INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (4,	0,	'Boîte aux lettres',	'',	0,	0,	1429028816,	1429028802,	12,	0,	0,	1,	1,	NULL);
-INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (5,	0,	'Casella postale',	'',	0,	0,	1429084530,	1429028819,	12,	0,	0,	2,	1,	NULL);
+INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (5,	0,	'Bucalettere',	'',	0,	0,	1429084530,	1429028819,	12,	0,	0,	2,	1,	NULL);
 INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (6,	0,	'Administration communale',	'',	1,	0,	1429084545,	1429028839,	12,	0,	0,	1,	2,	NULL);
 INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (7,	0,	'Amministrazione comunale',	'',	1,	0,	1429084596,	1429028853,	12,	0,	0,	2,	2,	NULL);
 INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (8,	0,	'Bureau de vote',	'',	0,	0,	1429028866,	1429028860,	12,	0,	0,	1,	3,	NULL);

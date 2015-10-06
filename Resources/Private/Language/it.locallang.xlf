@@ -5,7 +5,7 @@
 		<body>
 
 			<trans-unit id="post_box">
-				<target>Casella postale</target>
+				<target>Bucalettere</target>
 			</trans-unit>
 			<trans-unit id="last_emptying">
 				<target>Ultima vuotatura</target>
