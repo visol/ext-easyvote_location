@@ -35,7 +35,7 @@ class IconViewHelper extends AbstractViewHelper {
 		$locationTypeIcon = $this->getLocationTypeService()->getIcon($location->getLocationType());
 		$locationTypeName = explode('.', $locationTypeIcon)[0];
 		$iconSuffix = '';
-		if ($location->getIsActive()) { $iconSuffix .= 'Gray'; }
+		if (!$location->getIsActive()) { $iconSuffix .= 'Gray'; }
 		if ($location->getEvents()->count() > 0) { $iconSuffix .= 'Event'; }
 		return sprintf('%sResources/Public/Icons/' . $locationTypeName . '%s.png',
 			$extensionPath,
