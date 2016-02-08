@@ -299,9 +299,10 @@ var Maps = (function () {
 				if (!location.active) {
 					iconBasePath += "Gray";
 				}
-				if (location.hasEvent) {
-					iconBasePath += "Event";
-				}
+				// Only for vote events
+				//if (location.hasEvent) {
+				//	iconBasePath += "Event";
+				//}
 				return iconBasePath + ".png";
 			}
 		},

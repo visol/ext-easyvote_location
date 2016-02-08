@@ -10,11 +10,13 @@
 			</f:else>
 		</f:if>
 	</strong>
-	<f:if condition="{numberOfParticipants} > 0">
-		<div class="participants">
-			{numberOfParticipants} <f:translate key="participants" extensionName="easyvote_location"/>
-		</div>
-	</f:if>
+	<f:comment>
+		<f:if condition="{numberOfParticipants} > 0">
+			<div class="participants">
+				{numberOfParticipants} <f:translate key="participants" extensionName="easyvote_location"/>
+			</div>
+		</f:if>
+	</f:comment>
 </div>
 <div style="margin-top: 10px;">
 	<strong>
@@ -53,7 +55,9 @@
 		<f:translate key="find_my_way" extensionName="easyvote_location"/>
 	</a>
 </div>
-<button type="button" class="btn btn-primary btn-sm button-mobilize" onclick="Easyvote.setEventLocation(this)" data-location-uid="{location.uid}" data-location-text="{f:translate(key: 'post_box', extensionName: 'easyvote_location')}, {location.street}, {location.zip} {location.city}">
-	<f:translate key="mobilize_friends" extensionName="easyvote_location"/>
-</button>
+<f:comment>
+	<button type="button" class="btn btn-primary btn-sm button-mobilize" onclick="Easyvote.setEventLocation(this)" data-location-uid="{location.uid}" data-location-text="{f:translate(key: 'post_box', extensionName: 'easyvote_location')}, {location.street}, {location.zip} {location.city}">
+		<f:translate key="mobilize_friends" extensionName="easyvote_location"/>
+	</button>
+</f:comment>
 {namespace l=Visol\EasyvoteLocation\ViewHelpers}

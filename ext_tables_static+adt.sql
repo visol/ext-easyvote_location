@@ -35,6 +35,6 @@ INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (6,	0,	'Adminis
 INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (7,	0,	'Amministrazione comunale',	'',	1,	0,	1429084596,	1429028853,	12,	0,	0,	2,	2,	NULL);
 INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (8,	0,	'Bureau de vote',	'',	0,	0,	1429028866,	1429028860,	12,	0,	0,	1,	3,	NULL);
 INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (9,	0,	'Ufficio elettorale',	'',	0,	0,	1429084625,	1429028868,	12,	0,	0,	2,	3,	NULL);
-INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (10,	0,	'#VoteNow2015',	'',	0,	0,	1424700256,	1424700256,	12,	0,	0,	0,	0,	NULL);
-INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (11,	0,	'#VoteNow2015',	'',	0,	0,	1424700256,	1424700256,	12,	0,	0,	1,	10,	NULL);
-INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (12,	0,	'#VoteNow2015',	'',	0,	0,	1424700256,	1424700256,	12,	0,	0,	2,	10,	NULL);
+-- INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (10,	0,	'#VoteNow2015',	'',	0,	0,	1424700256,	1424700256,	12,	0,	0,	0,	0,	NULL);
+-- INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (11,	0,	'#VoteNow2015',	'',	0,	0,	1424700256,	1424700256,	12,	0,	0,	1,	10,	NULL);
+-- INSERT INTO tx_easyvotelocation_domain_model_locationtype VALUES (12,	0,	'#VoteNow2015',	'',	0,	0,	1424700256,	1424700256,	12,	0,	0,	2,	10,	NULL);
