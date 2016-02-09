@@ -72,7 +72,7 @@ class LocationService {
 		if (!$votingLimit) {
 			$isActive = FALSE;
 		} elseif ($locationType === LocationType::TYPE_POST_BOX) {
-			$isActive = $this->isActiveForPostBox($votingLimit, DAY::WEDNESDAY, 4);
+			$isActive = $this->isActiveForPostBox($votingLimit, DAY::TUESDAY, 5);
 		}
 		return $isActive;
 	}
