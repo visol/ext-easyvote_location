@@ -37,14 +37,14 @@
 		<f:if condition="{location.isPostBActive}">
 			<f:translate key="post_b" extensionName="easyvote_location"/>:
 			<f:translate key="tuesday" extensionName="easyvote_location"/>,
-			{l:format.postBox.date(dayBack: '6')},
+			{l:format.postBox.date(dayBack: '6', location: location)},
 			{l:format.postBox.emptyingTime(day: '2')}
 			<br/>
 		</f:if>
 
 		<f:translate key="post_a" extensionName="easyvote_location"/>:
 		<f:translate key="thursday" extensionName="easyvote_location"/>,
-		{l:format.postBox.date(dayBack: '4')},
+		{l:format.postBox.date(dayBack: '4', location: location)},
 		{l:format.postBox.emptyingTime(day: '4')}
 
 	</div>

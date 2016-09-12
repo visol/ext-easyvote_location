@@ -43,12 +43,13 @@ class LocationService {
 	}
 
 	/**
+	 * @param int $contentElementUid UID of the content element with the map container
 	 * @return bool
 	 */
-	public function isActive() {
+	public function isActive($contentElementUid) {
 
 		$isActive = TRUE;
-		$votingLimit = $this->getVotingDayService()->getTimeLimit();
+		$votingLimit = $this->getVotingDayService()->getTimeLimit($contentElementUid);
 		$locationType = (int)$this->location['location_type'];
 
 		if (!$votingLimit) {
@@ -62,11 +63,12 @@ class LocationService {
 	}
 
 	/**
+	 * @param int $contentElementUid UID of the content element with the map container
 	 * @return bool
 	 */
-	public function isPostBActive() {
+	public function isPostBActive($contentElementUid) {
 		$isActive = TRUE;
-		$votingLimit = $this->getVotingDayService()->getTimeLimit();
+		$votingLimit = $this->getVotingDayService()->getTimeLimit($contentElementUid);
 		$locationType = (int)$this->location['location_type'];
 
 		if (!$votingLimit) {

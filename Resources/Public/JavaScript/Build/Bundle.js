@@ -211,7 +211,7 @@ var Maps = (function () {
 				// If we don't have the points in Session Storage, fetch them by Ajax.
 				if (!$.cookie("isDataValid") || !serializedLocations) {
 					$.ajax({
-						url: "/routing/locations" + "?L=" + EasyvoteLocation.Language,
+						url: "/routing/locations" + "?L=" + EasyvoteLocation.Language + "&cid=" + EasyvoteLocation.ContentElementUid,
 						async: true,
 						cache: true,
 						success: function success(locations) {
@@ -361,7 +361,7 @@ var Maps = (function () {
 						var isMissingContent = infoBox.getContent().match("loading.gif");
 						if (isMissingContent) {
 							$.ajax({
-								url: "/routing/locations/" + marker.id + "?L=" + EasyvoteLocation.Language,
+								url: "/routing/locations/" + marker.id + "?L=" + EasyvoteLocation.Language + "&cid=" + EasyvoteLocation.ContentElementUid,
 								success: function success(location) {
 									var content = "<div class=\"maps-infoBox\">" + location.description + "</div>";
 									infoBox.setContent(content);

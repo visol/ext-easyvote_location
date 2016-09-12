@@ -14,6 +14,5 @@ plugin.tx_easyvotelocation {
 	}
 
 	settings {
-		content_element_map_uid = 2617
 	}
 }

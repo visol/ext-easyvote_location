@@ -69,6 +69,12 @@ class Location extends AbstractEntity {
 	protected $description = '';
 
 	/**
+	 * @var integer
+	 * @transient
+	 */
+	protected $contentElementUid;
+
+	/**
 	 * @var boolean
 	 * @transient
 	 */
@@ -259,11 +265,27 @@ class Location extends AbstractEntity {
 	}
 
 	/**
+	 * @return int
+	 */
+	public function getContentElementUid()
+	{
+		return $this->contentElementUid;
+	}
+
+	/**
+	 * @param int $contentElementUid
+	 */
+	public function setContentElementUid($contentElementUid)
+	{
+		$this->contentElementUid = $contentElementUid;
+	}
+
+	/**
 	 * @return string $isActive
 	 */
 	public function getIsActive() {
 		if (is_null($this->isActive)) {
-			$this->isActive = $this->getLocationService()->isActive();
+			$this->isActive = $this->getLocationService()->isActive($this->getContentElementUid());
 		}
 		return $this->isActive;
 	}
@@ -273,7 +295,7 @@ class Location extends AbstractEntity {
 	 */
 	public function getIsPostBActive() {
 		if (is_null($this->isPostBActive)) {
-			$this->isPostBActive = $this->getLocationService()->isPostBActive();
+			$this->isPostBActive = $this->getLocationService()->isPostBActive($this->getContentElementUid());
 		}
 		return $this->isPostBActive;
 	}

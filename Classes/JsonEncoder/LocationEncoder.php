@@ -20,15 +20,16 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 /**
  * Location Type encoder
  */
-class LocationEncoder implements JsonEncoderInterface {
+class LocationEncoder {
 
 	/**
 	 * Encode to JSON the given objects.
 	 *
 	 * @param QueryResultInterface|array $locations
+	 * @param $contentElementUid integer UID of the content element with the map container
 	 * @return string
 	 */
-	public function encode($locations) {
+	public function encode($locations, $contentElementUid) {
 
 		$collectedObjects = array();
 
@@ -38,7 +39,7 @@ class LocationEncoder implements JsonEncoderInterface {
 				'latitude' => $location['latitude'] - 0,
 				'longitude' => $location['longitude'] - 0,
 				'type' => (int)$location['location_type'],
-				'active' => $this->getLocationService($location)->isActive(),
+				'active' => $this->getLocationService($location)->isActive($contentElementUid),
 				'hasEvent' => $location['events'] > 0
 			);
 		}

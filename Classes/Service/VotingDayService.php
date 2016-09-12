@@ -40,12 +40,13 @@ class VotingDayService implements SingletonInterface {
 	protected $contentElementValue;
 
 	/**
+	 * @param int $contentElementUid UID of the content element with the map container
 	 * @return bool
 	 */
-	public function getTimeLimit() {
+	public function getTimeLimit($contentElementUid) {
 		if (is_null($this->votingLimit)) {
 
-			if ($this->hasOverrideByContentElement()) {
+			if ($this->hasOverrideByContentElement($contentElementUid)) {
 				$this->votingLimit = $this->getVotingLimitFromContentElement();
 			} elseif ($this->hasVotingDay()) {
 				$this->votingLimit = $this->getVotingLimitFromVotingDay();
@@ -80,12 +81,13 @@ class VotingDayService implements SingletonInterface {
 	}
 
 	/**
+	 * @param int $contentElementUid UID of the content element with the map container
 	 * @return bool
 	 */
-	protected function hasOverrideByContentElement() {
+	protected function hasOverrideByContentElement($contentElementUid) {
 
 		$settings = $this->getSettings();
-		$record = $this->getDatabaseConnection()->exec_SELECTgetSingleRow('uid, pi_flexform', 'tt_content', 'uid = ' . $settings['content_element_map_uid']);
+		$record = $this->getDatabaseConnection()->exec_SELECTgetSingleRow('uid, pi_flexform', 'tt_content', 'uid = ' . $contentElementUid);
 		if ($record) {
 			$data = GeneralUtility::xml2array($record['pi_flexform']);
 

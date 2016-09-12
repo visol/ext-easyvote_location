@@ -53,8 +53,11 @@ class LocationApiController extends ActionController {
 		$response = $this->cacheInstance->get($cacheIdentifier);
 
 		if (!$response) {
+			// UID of the content element with the map container
+			$contentElementUid = (int)GeneralUtility::_GP('cid');
+
 			$locations = $this->locationRepository->findAllForMaps();
-			$response = $this->getLocationEncoder()->encode($locations);
+			$response = $this->getLocationEncoder()->encode($locations, $contentElementUid);
 
 			$tags = array();
 			$lifetime = $this->getLifeTime();
@@ -79,6 +82,10 @@ class LocationApiController extends ActionController {
 	 * @return string
 	 */
 	public function showAction(Location $location) {
+		// UID of the content element with the map container
+		$contentElementUid = (int)GeneralUtility::_GP('cid');
+		$location->setContentElementUid($contentElementUid);
+
 		$this->view->assign('value', $this->getLocationFormatter()->format($location));
 	}
 

@@ -16,6 +16,7 @@ namespace Visol\EasyvoteLocation\ViewHelpers\Format\PostBox;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use Visol\EasyvoteLocation\Domain\Model\Location;
 use Visol\EasyvoteLocation\Enumeration\Time;
 use Visol\EasyvoteLocation\Service\VotingDayService;
 
@@ -26,10 +27,11 @@ class DateViewHelper extends AbstractViewHelper {
 
 	/**
 	 * @param int $dayBack
+	 * @param Location $location
 	 * @return string
 	 */
-	public function render($dayBack) {
-		return date('d.m.Y', $this->getVotingDayService()->getTimeLimit() - ($dayBack * Time::DAY));
+	public function render($dayBack, Location $location) {
+		return date('d.m.Y', $this->getVotingDayService()->getTimeLimit($location->getContentElementUid()) - ($dayBack * Time::DAY));
 	}
 
 	/**
