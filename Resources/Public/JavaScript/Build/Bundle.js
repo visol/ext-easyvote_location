@@ -211,7 +211,7 @@ var Maps = (function () {
 				// If we don't have the points in Session Storage, fetch them by Ajax.
 				if (!$.cookie("isDataValid") || !serializedLocations) {
 					$.ajax({
-						url: "/routing/locations",
+						url: "/routing/locations" + "?L=" + EasyvoteLocation.Language,
 						async: true,
 						cache: true,
 						success: function success(locations) {
