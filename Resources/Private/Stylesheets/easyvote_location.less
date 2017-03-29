@@ -3,6 +3,10 @@
 	height: 400px;
 }
 
+#map-container {
+	z-index: 1000;
+}
+
 #legend {
 	background: rgba(255, 255, 255, 0.71);
 	min-width: 135px;
@@ -22,11 +26,10 @@
 
 .maps-infoBox {
 	z-index: 1009;
-	background: #0E6CA3;
+	background: #ffffff;
 	padding: 10px;
-	color: white;
 	font-size: 130%;
-	border-radius: 5px;
+	border: solid 2px #102b4e;
 	.header {
 		position: relative;
 		.participants {
@@ -66,7 +69,7 @@
 	content: '';
 	width: 0;
 	height: 0;
-	border-top: solid 15px #0E6CA3;
+	border-top: solid 15px #102b4e;
 	border-left: solid 15px transparent;
 	border-right: solid 15px transparent;
 }
